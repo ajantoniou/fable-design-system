@@ -65,20 +65,29 @@ Backups:
 
 ---
 
-## Gallery assets to prepare (PH wants a thumbnail + 3–5 images)
+## Gallery assets (PH wants a thumbnail + 3–5 images) — ALREADY BUILT
 
-1. **Thumbnail (240×240):** the 🎨 + "Fable Design Skill" wordmark on a warm-paper
-   background with the teal accent. (Make this in the persona's own style — eat
-   your own dog food.)
-2. **Before / After:** same prompt, default-AI output vs. Fable-skill output,
-   side by side. This is the money shot — lead with it.
-3. **Install screen:** the three logos (Claude / Codex / Antigravity) + the
-   one-line install command.
-4. **The "what changes" checklist** from the README as a clean graphic.
-5. **Credits card:** "Built by Dr. Antoniou · Free from UploadCheck" with both URLs.
+Four before/after comparisons live in `assets/` (each `compare-<brand>.png`,
+4808×1520, brand URL in the footer). Left = real un-coached output from a fast
+model; right = the same brand rebuilt with the Fable Design System. Upload them
+in this order:
 
-> Tip: generate all five with the skill itself (or the bundled persona) so the
-> gallery *is* a demo of the output. That's the strongest possible proof.
+1. **Lead / "money shot":** `assets/compare-healthbrew.png` — the cinematic
+   register reads most dramatically. (Or `compare-cliros.png` for the warm
+   serif-editorial look — pick whichever lands hardest for your audience.)
+2. `assets/compare-uploadcheck.png` — grotesque register, the QC-report panel.
+3. `assets/compare-estimateproof.png` — cinematic + serif, the decision cards.
+4. `assets/compare-cliros.png` — serif-editorial warm, the closing-dossier card.
+
+Each is a real, shipping product (UploadCheck, HealthBrew, EstimateProof,
+Cliros), so the gallery doubles as proof *and* advertises four live sites.
+
+**Still nice-to-have (optional, not built):**
+- A 240×240 **thumbnail**: the 🎨 + "Fable Design System" wordmark on warm paper.
+- A **credits card**: "Built by Dr. Antoniou · Free from UploadCheck" + URLs.
+
+> The before/afters ARE the demo — they show the system's output directly. That's
+> the strongest possible proof and needs no extra explainer graphics.
 
 ---
 
