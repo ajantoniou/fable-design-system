@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliros.ai — After</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EC;
+    --paper-2:#FFFDF7;
+    --ink:#1a1410;
+    --ink-soft:rgba(26,20,16,.62);
+    --ink-faint:rgba(26,20,16,.42);
+    --teal:#0b6a67;
+    --teal-deep:#085451;
+    --terra:#7c1d10;
+    --line:rgba(26,20,16,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:760px}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(120% 90% at 88% -10%, #FFFDF7 0%, rgba(255,253,247,0) 55%),
+      radial-gradient(90% 80% at -5% 110%, #F4EEDD 0%, rgba(244,238,221,0) 50%),
+      var(--paper);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+    position:relative;
+  }
+  .page{
+    position:absolute;inset:0;
+    padding:66px 70px;
+    display:flex;flex-direction:column;
+  }
+
+  /* fixed chip top-left */
+  .chip{
+    position:absolute;top:26px;left:70px;
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--ink);color:var(--paper-2);
+    font-family:'Geist Mono',monospace;
+    font-size:11px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;
+    padding:8px 15px;border-radius:999px;
+    box-shadow:0 8px 24px rgba(26,20,16,.18);
+    z-index:5;
+  }
+  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(11,106,103,.28)}
+
+  .layout{
+    flex:1;
+    display:grid;
+    grid-template-columns:1.18fr .82fr;
+    gap:56px;
+    align-items:center;
+    padding-top:34px;
+  }
+
+  /* LEFT */
+  .eyebrow{
+    font-family:'Geist Mono',monospace;
+    font-size:11px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--teal);
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:24px;
+  }
+  .eyebrow::before{
+    content:"";width:26px;height:1.5px;background:var(--teal);display:inline-block;opacity:.6;
+  }
+
+  h1{
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
+    font-size:clamp(44px,4.7vw,62px);
+    line-height:1.04;
+    letter-spacing:-.012em;
+    margin-bottom:26px;
+    max-width:13ch;
+  }
+  h1 .pour{
+    font-style:italic;
+    color:var(--terra);
+  }
+
+  .sub{
+    font-size:16px;
+    line-height:1.62;
+    color:var(--ink-soft);
+    max-width:50ch;
+    margin-bottom:34px;
+  }
+
+  .cta-row{
+    display:flex;align-items:center;gap:16px;margin-bottom:20px;
+  }
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;font-weight:500;
+    cursor:pointer;border:none;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:all .2s ease;
+  }
+  .btn-pill{
+    background:var(--teal);color:#fff;
+    padding:14px 26px;border-radius:999px;
+    box-shadow:0 8px 24px rgba(11,106,103,.30);
+  }
+  .btn-pill:hover{background:var(--teal-deep);transform:translateY(-1px)}
+  .btn-ghost{
+    background:transparent;color:var(--ink);
+    padding:13px 24px;border-radius:999px;
+    border:1.5px solid var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink);color:var(--paper-2)}
+
+  .fineprint{
+    font-family:'Geist Mono',monospace;
+    font-size:11px;letter-spacing:.04em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+  }
+
+  /* RIGHT — closing dossier card */
+  .dossier{
+    position:relative;
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:30px 32px 28px;
+    box-shadow:
+      0 28px 60px -24px rgba(11,106,103,.28),
+      0 8px 24px -10px rgba(26,20,16,.10);
+    transform:rotate(.6deg);
+  }
+  .dossier::before{
+    content:"";position:absolute;inset:0;border-radius:16px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+    pointer-events:none;
+  }
+  .dossier-head{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding-bottom:18px;margin-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .dossier-title{
+    font-family:'Instrument Serif',serif;
+    font-size:24px;line-height:1.1;letter-spacing:-.01em;
+  }
+  .dossier-meta{
+    font-family:'Geist Mono',monospace;
+    font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:5px;
+  }
+  .badge{
+    font-family:'Geist Mono',monospace;
+    font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--teal);
+    border:1px solid rgba(11,106,103,.35);
+    background:rgba(11,106,103,.06);
+    padding:5px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .item{
+    display:flex;align-items:center;gap:13px;
+    padding:9.5px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .item:last-of-type{border-bottom:none}
+  .check{
+    flex:none;width:19px;height:19px;border-radius:50%;
+    background:rgba(11,106,103,.10);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .check svg{width:11px;height:11px;stroke:var(--teal);stroke-width:2.4;fill:none}
+  .item-name{
+    font-size:13.5px;font-weight:500;color:var(--ink);flex:1;
+  }
+  .item-tag{
+    font-family:'Geist Mono',monospace;
+    font-size:10px;letter-spacing:.04em;
+    color:var(--ink-faint);
+  }
+  .dossier-foot{
+    margin-top:18px;padding-top:16px;
+    border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .foot-left{
+    font-family:'Instrument Serif',serif;font-style:italic;
+    font-size:15px;color:var(--ink-soft);
+  }
+  .foot-time{
+    font-family:'Geist Mono',monospace;
+    font-size:11px;font-weight:600;letter-spacing:.08em;
+    color:var(--teal);
+    display:flex;align-items:center;gap:7px;
+  }
+  .foot-time .pulse{
+    width:6px;height:6px;border-radius:50%;background:var(--teal);
+    box-shadow:0 0 0 0 rgba(11,106,103,.5);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(11,106,103,.45)}
+    70%{box-shadow:0 0 0 7px rgba(11,106,103,0)}
+    100%{box-shadow:0 0 0 0 rgba(11,106,103,0)}
+  }
+</style>
+</head>
+<body>
+  <div class="chip"><span class="dot"></span>Cliros.ai</div>
+
+  <div class="page">
+    <div class="layout">
+      <!-- LEFT -->
+      <div class="hero">
+        <div class="eyebrow">End-to-End Title Review &amp; Closing Docs</div>
+        <h1>Full end-to-end completed title work, prepared in the time it takes to <span class="pour">pour the coffee.</span></h1>
+        <p class="sub">The full Georgia residential closing package — title search, AOL, deed, settlement statement, PT-61, affidavits, owner's policy — assembled in about five minutes. You sign the opinion.</p>
+        <div class="cta-row">
+          <button class="btn btn-pill">Open a file <span>&rarr;</span></button>
+          <button class="btn btn-ghost">How it works</button>
+        </div>
+        <div class="fineprint">Three packs. ~$200 per closing file at launch.</div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="dossier-wrap">
+        <div class="dossier">
+          <div class="dossier-head">
+            <div>
+              <div class="dossier-title">Closing Dossier</div>
+              <div class="dossier-meta">File 24-0613 · Fulton County, GA</div>
+            </div>
+            <div class="badge">Ready to sign</div>
+          </div>
+
+          <div class="item">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="item-name">Title search &amp; examination</span>
+            <span class="item-tag">60 yr</span>
+          </div>
+          <div class="item">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="item-name">Attorney's Opinion of Title (AOL)</span>
+            <span class="item-tag">draft</span>
+          </div>
+          <div class="item">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="item-name">Warranty deed</span>
+            <span class="item-tag">exec.</span>
+          </div>
+          <div class="item">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="item-name">Settlement statement</span>
+            <span class="item-tag">CD</span>
+          </div>
+          <div class="item">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="item-name">PT-61 &amp; transfer affidavits</span>
+            <span class="item-tag">filed</span>
+          </div>
+          <div class="item">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="item-name">Owner's title policy</span>
+            <span class="item-tag">bound</span>
+          </div>
+
+          <div class="dossier-foot">
+            <div class="foot-left">You sign the opinion.</div>
+            <div class="foot-time"><span class="pulse"></span>Assembled · ~5 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

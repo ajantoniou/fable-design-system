@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthBrew — Brew more green days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#22c55e;
+    --green-bright:#4ade80;
+    --green-deep:#14532d;
+    --cream:#f5f0e6;
+    --cream-dim:rgba(245,240,230,.72);
+    --cream-faint:rgba(245,240,230,.46);
+    --ink:#0c1410;
+    --card-line:rgba(245,240,230,.14);
+    --shadow:0 8px 24px rgba(34,197,94,.25);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html,body{
+    width:1200px;
+    height:760px;
+    overflow:hidden;
+    font-family:'Inter',system-ui,sans-serif;
+    background:#0a0f0c;
+    color:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .stage{
+    position:relative;
+    width:1200px;
+    height:760px;
+    /* Simulated photograph: deep green-to-charcoal, low warm light bottom-left */
+    background:
+      radial-gradient(120% 90% at 18% 88%, rgba(74,222,128,.16) 0%, rgba(20,83,45,.10) 26%, transparent 56%),
+      radial-gradient(90% 70% at 88% 8%, rgba(34,197,94,.10) 0%, transparent 50%),
+      linear-gradient(135deg, #102018 0%, #0d1812 34%, #0a120d 60%, #07100b 100%);
+    overflow:hidden;
+  }
+
+  /* atmospheric film grain + vignette */
+  .stage::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(150% 120% at 50% 40%, transparent 52%, rgba(0,0,0,.46) 100%);
+    pointer-events:none;
+  }
+  .stage::after{
+    content:"";
+    position:absolute;
+    inset:-40%;
+    opacity:.05;
+    pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* soft drifting orb of warm green light */
+  .glow{
+    position:absolute;
+    width:520px;height:520px;
+    left:-120px;bottom:-160px;
+    background:radial-gradient(circle, rgba(74,222,128,.22) 0%, rgba(34,197,94,.06) 42%, transparent 70%);
+    filter:blur(8px);
+    border-radius:50%;
+    pointer-events:none;
+  }
+
+  .frame{
+    position:absolute;
+    inset:0;
+    padding:68px 72px;
+    display:flex;
+    flex-direction:column;
+    z-index:2;
+  }
+
+  /* chip top-left */
+  .chip{
+    position:fixed;
+    top:24px;left:24px;
+    z-index:10;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 15px 7px 12px;
+    border-radius:999px;
+    background:rgba(7,16,11,.78);
+    border:1px solid rgba(245,240,230,.16);
+    backdrop-filter:blur(10px);
+    font-family:'Geist Mono',monospace;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.08em;
+    color:var(--cream);
+  }
+  .chip .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--green-bright);
+    box-shadow:0 0 9px rgba(74,222,128,.9);
+  }
+
+  /* nav */
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:6px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Instrument Serif',serif;
+    font-size:23px;
+    letter-spacing:.01em;
+    color:var(--cream);
+  }
+  .brand .mark{
+    color:var(--green-bright);
+    font-size:18px;
+    transform:translateY(-1px);
+  }
+  .nav-right{
+    display:flex;align-items:center;gap:30px;
+    font-size:14px;
+    color:var(--cream-dim);
+  }
+  .nav-right .free{
+    font-family:'Geist Mono',monospace;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--green-bright);
+  }
+
+  /* hero body */
+  .hero{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:56px;
+    margin-top:6px;
+  }
+  .col-text{
+    width:660px;
+    flex:none;
+  }
+
+  .eyebrow{
+    font-family:'Geist Mono',monospace;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--green-bright);
+    margin-bottom:26px;
+    display:flex;align-items:center;gap:11px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:1px;
+    background:var(--green-bright);
+    opacity:.7;
+  }
+
+  h1{
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
+    font-size:clamp(52px,5.6vw,72px);
+    line-height:1.04;
+    letter-spacing:-0.012em;
+    color:var(--cream);
+    margin-bottom:26px;
+  }
+  h1 .accent{
+    font-style:italic;
+    color:var(--green-bright);
+  }
+
+  .sub{
+    font-size:17px;
+    line-height:1.62;
+    color:var(--cream-dim);
+    max-width:540px;
+    margin-bottom:36px;
+  }
+  .sub .meet{
+    color:var(--cream);
+    font-weight:500;
+  }
+
+  .ctas{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .16s cubic-bezier(0.16,1,0.3,1), box-shadow .2s ease, background .2s ease, color .2s ease;
+    border:none;
+  }
+  .btn-pill{
+    background:var(--green);
+    color:#06140c;
+    padding:15px 28px;
+    border-radius:999px;
+    box-shadow:var(--shadow);
+  }
+  .btn-pill:hover{
+    transform:translateY(-1px);
+    background:var(--green-bright);
+    box-shadow:0 12px 30px rgba(34,197,94,.34);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--cream);
+    padding:15px 26px;
+    border-radius:999px;
+    border:1.5px solid rgba(245,240,230,.5);
+  }
+  .btn-ghost:hover{
+    transform:translateY(-1px);
+    background:var(--cream);
+    color:var(--ink);
+    border-color:var(--cream);
+  }
+
+  /* floating stat / preview card */
+  .col-card{
+    flex:1;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+  }
+  .card{
+    width:340px;
+    background:linear-gradient(165deg, rgba(18,32,24,.86), rgba(9,18,13,.92));
+    border:1px solid var(--card-line);
+    border-radius:16px;
+    padding:26px 26px 24px;
+    backdrop-filter:blur(14px);
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(74,222,128,.05);
+  }
+  .card-top{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:20px;
+  }
+  .card-top .who{
+    display:flex;align-items:center;gap:11px;
+  }
+  .avatar{
+    width:38px;height:38px;border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, var(--green-bright), var(--green-deep));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Instrument Serif',serif;
+    font-size:19px;color:#06140c;
+    box-shadow:0 0 0 1px rgba(74,222,128,.3);
+  }
+  .who .name{font-size:14px;font-weight:600;color:var(--cream);line-height:1.2;}
+  .who .role{
+    font-family:'Geist Mono',monospace;
+    font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--green-bright);margin-top:3px;
+  }
+  .card-top .live{
+    font-family:'Geist Mono',monospace;
+    font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--cream-faint);
+    display:flex;align-items:center;gap:6px;
+  }
+  .card-top .live .pulse{
+    width:6px;height:6px;border-radius:50%;background:var(--green-bright);
+    box-shadow:0 0 8px var(--green-bright);
+  }
+
+  .quote{
+    font-family:'Instrument Serif',serif;
+    font-size:18px;
+    line-height:1.4;
+    color:var(--cream);
+    margin-bottom:22px;
+    letter-spacing:-0.005em;
+  }
+  .quote .em{font-style:italic;color:var(--green-bright);}
+
+  .streak{
+    display:flex;align-items:flex-end;gap:6px;
+    margin-bottom:18px;
+    height:46px;
+  }
+  .day{
+    flex:1;border-radius:4px;
+  }
+  .day.g{background:linear-gradient(180deg,var(--green-bright),var(--green));}
+  .day.gd{background:linear-gradient(180deg,rgba(34,197,94,.7),rgba(20,83,45,.8));}
+  .day.r{background:linear-gradient(180deg,rgba(220,90,70,.85),rgba(120,40,30,.7));}
+
+  .stat-row{
+    display:flex;
+    border-top:1px solid var(--card-line);
+    padding-top:16px;
+  }
+  .stat{flex:1;}
+  .stat + .stat{border-left:1px solid var(--card-line);padding-left:18px;}
+  .stat .num{
+    font-family:'Instrument Serif',serif;
+    font-size:28px;line-height:1;
+    color:var(--cream);
+  }
+  .stat .num b{color:var(--green-bright);font-weight:400;}
+  .stat .lbl{
+    font-family:'Geist Mono',monospace;
+    font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--cream-faint);margin-top:7px;
+  }
+
+  /* bottom meta row */
+  .footer-meta{
+    display:flex;align-items:center;gap:22px;
+    font-family:'Geist Mono',monospace;
+    font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--cream-faint);
+    margin-top:4px;
+  }
+  .footer-meta .sep{opacity:.4;}
+  .footer-meta b{color:var(--green-bright);font-weight:600;}
+</style>
+</head>
+<body>
+  <div class="chip"><span class="dot"></span>HealthBrew</div>
+
+  <div class="stage">
+    <div class="glow"></div>
+
+    <div class="frame">
+      <!-- top nav -->
+      <div class="nav">
+        <div class="brand"><span class="mark">✳</span>HealthBrew</div>
+        <div class="nav-right">
+          <span>How it works</span>
+          <span>Science</span>
+          <span class="free">First 10 days free</span>
+        </div>
+      </div>
+
+      <!-- hero -->
+      <div class="hero">
+        <div class="col-text">
+          <div class="eyebrow">Built by a physician. No ring, no labs, no wearables. Just close.</div>
+          <h1>Stop tracking.<br>Start predicting.<br>Brew more <span class="accent">green days</span>.</h1>
+          <p class="sub">Labs are snapshots. Wearables can't read your thoughts. Lifestyle-medicine research points somewhere else — an honest, daily reflection. <span class="meet">Meet Sophia, your AI Advocate.</span></p>
+          <div class="ctas">
+            <button class="btn btn-pill">Start free →</button>
+            <button class="btn btn-ghost">How it works</button>
+          </div>
+        </div>
+
+        <!-- floating card -->
+        <div class="col-card">
+          <div class="card">
+            <div class="card-top">
+              <div class="who">
+                <div class="avatar">S</div>
+                <div>
+                  <div class="name">Sophia</div>
+                  <div class="role">AI Advocate</div>
+                </div>
+              </div>
+              <div class="live"><span class="pulse"></span>Today</div>
+            </div>
+
+            <div class="quote">"You closed three <span class="em">green days</span> in a row. Same again tonight?"</div>
+
+            <div class="streak">
+              <div class="day gd" style="height:58%"></div>
+              <div class="day r"  style="height:40%"></div>
+              <div class="day gd" style="height:64%"></div>
+              <div class="day g"  style="height:82%"></div>
+              <div class="day g"  style="height:90%"></div>
+              <div class="day g"  style="height:100%"></div>
+              <div class="day gd" style="height:72%"></div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat">
+                <div class="num"><b>18</b></div>
+                <div class="lbl">Green days</div>
+              </div>
+              <div class="stat">
+                <div class="num">5</div>
+                <div class="lbl">Red days</div>
+              </div>
+              <div class="stat">
+                <div class="num">6<span style="font-size:15px;">d</span></div>
+                <div class="lbl">Best streak</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer meta -->
+      <div class="footer-meta">
+        <span>Lifestyle medicine</span>
+        <span class="sep">/</span>
+        <span>Daily reflection</span>
+        <span class="sep">/</span>
+        <span><b>First 10 days free</b></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

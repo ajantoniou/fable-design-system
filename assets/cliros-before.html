@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliros - Automated Real Estate Title Searches</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 1200px;
+            height: 760px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 80px;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a5f7a;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0f1419;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .subheadline {
+            font-size: 18px;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #1a5f7a;
+            color: white;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 48px;
+            box-shadow: 0 4px 12px rgba(26, 95, 122, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #0f3d52;
+            box-shadow: 0 6px 16px rgba(26, 95, 122, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .feature {
+            display: flex;
+            gap: 12px;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-color: #1a5f7a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: #2d3748;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .accent {
+            color: #1a5f7a;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div style="position:fixed;top:20px;left:20px;z-index:9999;font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;background:#e5e7eb;color:#6b7280;padding:7px 13px;border-radius:999px;">Default AI output</div>
+    <div class="container">
+        <div class="logo">Cliros</div>
+        
+        <h1>Full end-to-end completed title work, prepared in minutes.</h1>
+        
+        <p class="subheadline">Automated title searches and closing documents—deeds, settlement statements, and affidavits ready for your closing in minutes, not days.</p>
+        
+        <button class="cta-button">Get Started Free</button>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text"><span class="accent">Instant title searches</span> across Georgia records</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text"><span class="accent">Auto-prepared documents</span> ready to sign</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text"><span class="accent">Reduced closing time</span> from days to minutes</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text"><span class="accent">Compliant & accurate</span> Georgia-specific templates</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UploadCheck — Never publish a broken video again</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf8f4;
+    --paper-2:#f3efe7;
+    --ink:#1a1714;
+    --ink-soft:#5b554d;
+    --accent:#16a34a;
+    --accent-deep:#0f7a37;
+    --canvas:#16140f;
+    --canvas-2:#211e18;
+    --line:#e4ddd0;
+    --flag:#e0533d;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1200px;height:760px;}
+  body{
+    background:var(--paper);
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+    position:relative;
+  }
+  .page{
+    width:1200px;
+    height:760px;
+    padding:68px 72px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  /* subtle paper texture glow */
+  .page::before{
+    content:"";
+    position:absolute;
+    top:-160px;left:-120px;
+    width:520px;height:520px;
+    background:radial-gradient(circle, rgba(22,163,74,0.10), rgba(22,163,74,0) 70%);
+    filter:blur(20px);
+    pointer-events:none;
+  }
+  .chip{
+    position:absolute;
+    top:28px;left:32px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--canvas);
+    color:#f4f1ea;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:0.02em;
+    padding:8px 16px;
+    border-radius:999px;
+    box-shadow:0 8px 24px rgba(22,20,15,0.22);
+    z-index:5;
+  }
+  .chip .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 3px rgba(22,163,74,0.25);
+  }
+  .hero{
+    display:grid;
+    grid-template-columns:1.04fr 0.96fr;
+    gap:56px;
+    align-items:center;
+    height:100%;
+    margin-top:18px;
+  }
+  /* ---- LEFT ---- */
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    color:var(--accent);
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:24px;height:1.5px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  h1{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:800;
+    font-size:clamp(44px,5.2vw,66px);
+    line-height:0.98;
+    letter-spacing:-0.025em;
+    color:var(--ink);
+    margin-bottom:26px;
+  }
+  h1 .green{color:var(--accent);}
+  .subcopy{
+    font-size:clamp(15px,1.25vw,17px);
+    line-height:1.55;
+    color:var(--ink-soft);
+    max-width:480px;
+    margin-bottom:34px;
+  }
+  .cta-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    border-radius:999px;
+    padding:15px 28px;
+    cursor:pointer;
+    border:1.5px solid transparent;
+    transition:all .18s ease;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+    box-shadow:0 8px 24px rgba(22,163,74,0.25);
+  }
+  .btn-primary:hover{
+    background:var(--accent-deep);
+    box-shadow:0 10px 28px rgba(22,163,74,0.32);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1.5px solid var(--ink);
+  }
+  .btn-ghost:hover{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .meta-line{
+    margin-top:30px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .meta-line .tick{color:var(--accent);font-weight:600;}
+  /* ---- RIGHT: device canvas ---- */
+  .device-wrap{
+    position:relative;
+  }
+  .device-wrap::after{
+    content:"";
+    position:absolute;
+    inset:18px -8px -28px 24px;
+    background:radial-gradient(60% 70% at 60% 50%, rgba(22,163,74,0.16), rgba(22,163,74,0) 70%);
+    filter:blur(24px);
+    z-index:0;
+    pointer-events:none;
+  }
+  .device{
+    position:relative;
+    z-index:1;
+    background:var(--canvas);
+    border-radius:16px;
+    padding:22px 22px 24px;
+    box-shadow:0 28px 60px -24px rgba(22,20,15,0.55), 0 4px 14px rgba(22,20,15,0.18);
+    border:1px solid rgba(255,255,255,0.05);
+  }
+  .device-bar{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:20px;
+  }
+  .traffic{display:flex;gap:7px;}
+  .traffic span{width:11px;height:11px;border-radius:50%;}
+  .traffic .r{background:#ff5f57;}
+  .traffic .y{background:#febc2e;}
+  .traffic .g{background:#28c840;}
+  .device-title{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:#a59e90;
+    letter-spacing:0.02em;
+  }
+  .device-title b{color:#e9e4d9;font-weight:500;}
+  .report-head{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    color:#6f6a5e;
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .rows{display:flex;flex-direction:column;gap:9px;}
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--canvas-2);
+    border:1px solid rgba(255,255,255,0.04);
+    border-radius:11px;
+    padding:13px 15px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+  }
+  .row .file{color:#dad4c8;}
+  .row .file .mut{color:#7a7468;}
+  .status{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    font-size:12px;
+    font-weight:500;
+    padding:4px 11px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .status.ok{
+    color:#5fdc8a;
+    background:rgba(22,163,74,0.14);
+  }
+  .status.flag{
+    color:#ff8a73;
+    background:rgba(224,83,61,0.15);
+  }
+  .row.flagged{
+    border-color:rgba(224,83,61,0.30);
+  }
+  .flag-detail{
+    margin-top:13px;
+    background:rgba(224,83,61,0.10);
+    border:1px solid rgba(224,83,61,0.28);
+    border-radius:11px;
+    padding:12px 15px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    line-height:1.5;
+    color:#f0b3a6;
+  }
+  .flag-detail b{color:#ff8a73;}
+  .device-foot{
+    margin-top:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:#6f6a5e;
+  }
+  .device-foot .pass{
+    color:#5fdc8a;
+    display:flex;align-items:center;gap:6px;
+  }
+</style>
+</head>
+<body>
+  <div class="chip"><span class="dot"></span>UploadCheck</div>
+  <div class="page">
+    <div class="hero">
+      <!-- LEFT -->
+      <div class="left">
+        <div class="eyebrow">Automatic pre-publish check</div>
+        <h1>Never publish a <span class="green">broken</span> video again.</h1>
+        <p class="subcopy">YouTube checks for copyright. Nobody checks whether your audio cut out at minute 14 — until your comments do. UploadCheck catches it first.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#">Get the Prompt
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#">See a sample check</a>
+        </div>
+        <div class="meta-line"><span class="tick">$</span> npx uploadcheck ./final-cut.mp4 &nbsp;·&nbsp; runs in your agent</div>
+      </div>
+      <!-- RIGHT -->
+      <div class="device-wrap">
+        <div class="device">
+          <div class="device-bar">
+            <div class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+            <div class="device-title"><b>uploadcheck</b> · qc report</div>
+          </div>
+          <div class="report-head"><span>File / asset</span><span>Status</span></div>
+          <div class="rows">
+            <div class="row">
+              <span class="file">ep_142_final<span class="mut">.mp4</span></span>
+              <span class="status ok">✓ checked</span>
+            </div>
+            <div class="row">
+              <span class="file">intro_clip_9x16<span class="mut">.mov</span></span>
+              <span class="status ok">✓ checked</span>
+            </div>
+            <div class="row flagged">
+              <span class="file">podcast_s3e08<span class="mut">.wav</span></span>
+              <span class="status flag">⚑ flag</span>
+            </div>
+            <div class="row">
+              <span class="file">teaser_short<span class="mut">.mp4</span></span>
+              <span class="status ok">✓ checked</span>
+            </div>
+          </div>
+          <div class="flag-detail">
+            <b>⚑ podcast_s3e08.wav</b> — silent gap detected at <b>14:02–14:09</b> (audio dropout, 7.0s). Loudness OK · no clipping · captions aligned.
+          </div>
+          <div class="device-foot">
+            <span>4 assets scanned · 1 needs a look</span>
+            <span class="pass">●  3 pass</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

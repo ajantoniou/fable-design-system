@@ -15,11 +15,26 @@
 
 <br>
 
-![Before and after: the same landing page built with a default AI agent vs. with the Fable Design System](assets/before-after.gif)
+![Before and after: the same landing page built by a default AI agent vs. with the Fable Design System](assets/compare-healthbrew.png)
 
-<sub>Same prompt, same content. Left: what AI agents ship by default. Right: the same page with the Fable Design System installed.</sub>
+<sub><b>Same brand. Same copy.</b> Left: what an AI agent ships by default. Right: the same page with the Fable Design System installed.</sub>
 
 </div>
+
+---
+
+## See it on four real, shipping products
+
+Each pair below is the **same brand and the same copy** — left is a default AI agent's output, right is the same page rebuilt with the Fable Design System. These aren't mockups; the "after" matches four real sites in production.
+
+| Product | Before → After |
+|---|---|
+| **[UploadCheck](https://www.uploadcheck.app)** — pre-publish media QC | ![UploadCheck before/after](assets/compare-uploadcheck.png) |
+| **[HealthBrew](https://www.healthbrew.app)** — daily health reflection | ![HealthBrew before/after](assets/compare-healthbrew.png) |
+| **[EstimateProof](https://estimateproof.com)** — used-car deal check | ![EstimateProof before/after](assets/compare-estimateproof.png) |
+| **[Cliros](https://cliros.ai)** — real-estate closing automation | ![Cliros before/after](assets/compare-cliros.png) |
+
+<sub>The "before" pages are real, un-coached output from a fast model given a plain "build a landing page" prompt — not strawmen.</sub>
 
 ---
 
