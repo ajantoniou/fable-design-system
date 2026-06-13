@@ -42,10 +42,9 @@ The model's design voice was distinctive in ways that shaped this persona:
   clearly-light and clearly-dark surfaces — and *removing* a band-aid hack once
   the real cause was found.
 - **Editorial typography:** a variable-width heavy display face + a serif italic
-  counterpoint (in the recorded sessions the model named *Fraunces Italic* for
-  this role) + a monospace for technical annotations, with monochrome imagery.
+  counterpoint + a monospace for technical annotations, with monochrome imagery.
   Note: this is *observed*, not prescribed — the persona's type spec doesn't
-  mandate Fraunces, since the model's font choices varied by brand.
+  mandate any one serif, since the model's font choices varied by brand.
 - **Live-DOM verification:** running the site locally, scrolling it, checking the
   console, and verifying lower sections in the real DOM before calling it done.
 - **Small measured iteration:** nudging a hue step by step and re-measuring rather
