@@ -3,9 +3,10 @@
 > A reconstruction of the design instincts the (now-withdrawn) `claude-fable-5`
 > model exhibited when building websites and SaaS UI. Derived empirically from
 > two evidence streams: (1) Fable's own session transcripts — its thinking
-> blocks plus the CSS/HTML it actually shipped — and (2) two recorded sessions
-> of people building sites with Fable. Every value below traces to a real
-> artifact; nothing here is invented. Provenance notes are in
+> blocks plus the CSS/HTML it actually shipped — and (2) recorded sessions
+> (5+ creators, ~15 sites) of people building sites with Fable. Patterns that
+> recur across independent creators are treated as signal. Every value below
+> traces to a real artifact; nothing here is invented. Provenance notes are in
 > `EVIDENCE.md`.
 
 ---
@@ -344,3 +345,4 @@ motion only. CSS over video. `prefers-reduced-motion` always.
 - [ ] Radius matches brand voice; scale consistent.
 - [ ] Motion functional, CSS-first, `prefers-reduced-motion` wrapped.
 - [ ] Ran it locally, scrolled it, console clean, checked ≥1 breakpoint.
+
