@@ -15,10 +15,18 @@ locally-observable evidence**, then cross-checked against each other:
   (its "thinking") where that was visible. The concrete values — type scales,
   color tokens, shadow strings, easings, radius scales — come from reading
   actual shipped markup, not from imagination.
-- **Stream B — recorded build sessions.** Publicly-posted videos of people
-  building websites with the model, in several of which the model's design
-  reasoning appears on screen verbatim — including self-critique, contrast
-  measurements, and exact color values.
+- **Stream B — recorded build sessions.** Multiple publicly-posted videos
+  (5+ creators) of people building websites with the model, in several of which
+  the model's design reasoning appears on screen verbatim — including
+  self-critique, contrast measurements, and exact color values. Across ~15
+  distinct sites observed this way, several patterns recur independently of any
+  single creator: the **clean display + one-word serif-italic emphasis**
+  headline; **full-bleed moody-photography heros** with near-white type
+  (cinematic register); a **starburst/asterisk** brand glyph; **mono coordinate
+  / specimen labels**; **subtle scroll parallax + line-draw animations**; and
+  **brand-adaptive single accents** (green/teal/blue/terracotta/navy-orange),
+  the constant being "one accent + restraint," not a fixed hue. Cross-creator
+  repetition is what raised these from "one demo" to "signal."
 
 The two streams independently agree on the core signals (editorial type pairings,
 measured/value-separated color, vision-based self-correction against a live

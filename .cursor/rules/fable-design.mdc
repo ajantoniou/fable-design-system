@@ -26,7 +26,9 @@ Never use default fonts. Favor warm editorial restraint over flashy "AI" aesthet
 - Two registers — match to the brand, never default to one. Never a default-only stack.
 - **Serif-editorial (Fable's warm system; hospitality/editorial brands):** THREE fonts — Instrument Serif display at weight 400 (serif carries it, not bold) + Inter body + Geist Mono uppercase labels. Display line-height ~1.06, tracking -0.005…-0.015em. Contrast from loud mono labels, not a bold display.
 - **Grotesque/techy (SaaS):** display+body+mono trio — Bricolage Grotesque/Inter/IBM Plex Mono · Archivo/·/Spline Sans Mono. Display HEAVY 800/850/900 (+650/750 mids), tracking to -0.04em.
-- Both: fluid `clamp()` ladder; body line-height 1.5; mono micro-caps 10–13px uppercase +0.10–0.18em weight 600 (often in accent color). `display=swap`.
+- **Cinematic register (atmosphere-led brands):** clean display over full-bleed moody photography, near-white text, muted accent.
+- Both: fluid `clamp()` ladder; body line-height 1.5; mono micro-caps 10–13px uppercase +0.10–0.18em weight 600 (often in accent color; coords/specimen labels). `display=swap`.
+- **Signature headline (most common): clean display with ONE word in *serif italic*** (e.g. "keeps *watch*"), or the accent-colored-word variant — rarely both. Recurring brand glyph: a small starburst/asterisk mark.
 
 ## Spacing
 Fluid `clamp()` section padding (e.g. `clamp(64px,8vw,104px)`); grid/flex `gap`, never bare-sibling whitespace; even-8 scale; containers 1120–1440px; mobile-first `min-width` queries.

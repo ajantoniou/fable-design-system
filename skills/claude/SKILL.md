@@ -32,10 +32,13 @@ stack.
   Grotesque/Inter/IBM Plex Mono · Archivo/·/Spline Sans Mono. Display HEAVY
   800/850/900 (+ mid-steps 650/750), negative tracking to -0.04em.
 
-Both: fluid Utopia-style `clamp()` type ladder; body line-height 1.5; **mono
-micro-caps** 10–13px uppercase, +0.10–0.18em tracking, weight 600, often in the
-accent color (eyebrows/labels/stats). `display=swap`. Signature: one headline
-word in the accent color.
+Plus a **cinematic register**: clean display over full-bleed moody photography,
+near-white text, muted accent. Both type registers: fluid Utopia-style `clamp()`
+ladder; body line-height 1.5; **mono micro-caps** 10–13px uppercase,
++0.10–0.18em, weight 600, often in accent color (eyebrows/labels/stats/coords).
+`display=swap`. **Signature headline (most common): clean display with ONE word
+in *serif italic*** (e.g. "keeps *watch*") — or the accent-colored-word variant;
+rarely both. Recurring brand glyph: a small starburst/asterisk mark.
 
 ## Spacing
 Fluid `clamp()` section padding (`clamp(64px,8vw,104px)`); grid/flex `gap`, never

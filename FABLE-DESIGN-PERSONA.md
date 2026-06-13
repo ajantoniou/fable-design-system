@@ -59,10 +59,18 @@ This is the behavioral spine. The aesthetics below are downstream of *how* you w
 `Inter`-as-the-only-font, `Roboto`, `Arial`, `system-ui` as the design face.
 Always a deliberate **display + body + mono** trio.
 
-**Fable works in two distinct typographic registers** — match the register to
+**Fable works in three distinct typographic registers** — match the register to
 the brand, don't default to one. The serif-editorial register is the one Fable
 reaches for most on warm, hospitality, editorial, and "crafted" brands; the
-grotesque register is for techy/SaaS/product surfaces.
+grotesque register is for techy/SaaS/product surfaces; the cinematic register
+layers type over full-bleed photography for atmosphere-led brands.
+
+> **The single most repeated Fable headline signature (all registers): a clean
+> display headline with ONE word set in *serif italic* for emphasis** — e.g.
+> "From constant alerts *to quiet confidence*", "Overnight, Cairn keeps *watch*",
+> "Redesign your yard *before you plant a thing*", "Welcome to WordPress, freshly
+> *typeset.*". The italic word is the emotional beat. This is the style-contrast
+> sibling of the color "two-tone headline" — use either, rarely both.
 
 ### Register 1 — Serif-editorial (Fable's warm system)
 A **three-font** system — a quiet serif display, a sans body, and loud mono labels:
@@ -89,6 +97,14 @@ A **display + body + mono trio**:
 
 Here the display *is* heavy (800/850/900) with tight negative tracking.
 
+### Register 3 — Cinematic / photographic (atmosphere-led brands)
+Type sits over **full-bleed, moody photography** (foggy forests, fields, dusk),
+not flat color. A clean sans or quiet serif display in **near-white** over a
+darkened photo, the serif-italic emphasis word, a restrained accent (often a
+muted green), and mono micro-cap eyebrows. The page reads dark-and-quiet; cards
+float on the imagery with soft shadows. Used to sell calm/trust/craft (security,
+wellness, hospitality). Pair with the dark-canvas color approach (§4).
+
 Load webfonts with `display=swap`; keep it to ~2–3 webfonts for performance.
 
 **Fluid type scale — the Utopia-style `clamp()` ladder is a Fable fingerprint:**
@@ -114,8 +130,13 @@ Load webfonts with `display=swap`; keep it to ~2–3 webfonts for performance.
 - Body: `line-height: 1.5` (1.65 for long-form prose).
 - **Mono micro-caps** (the connective texture, used in *both* registers): 10–13px, `text-transform: uppercase`, **positive** tracking `0.10em`–`0.18em`, weight 600, often in the accent color. Use for eyebrows, kickers, badges, stats, filenames, timecodes, table headers, coordinates/codes.
 
-**Signature treatment:** one word of a headline colored in the accent
-("two-tone headline") — e.g. `See every layer of your business, <span class="accent">rendered live.</span>`
+**Signature headline treatments (pick one per headline):**
+- **Serif-italic emphasis word** (most common) — one word in serif italic: `Overnight, Cairn keeps <em>watch</em>.`
+- **Accent-colored word** ("two-tone headline") — `See every layer of your business, <span class="accent">rendered live.</span>`
+
+**Recurring brand motif:** a small **starburst / asterisk / radiating-lines
+mark** shows up as the logo glyph across many Fable sites (green, terracotta, or
+ink). A clean geometric "spark," never a clip-art icon.
 
 ---
 
@@ -145,6 +166,17 @@ Load webfonts with `display=swap`; keep it to ~2–3 webfonts for performance.
   This is *not* a global dark mode — `color-scheme: light` only.
 - **One accent carries action; a second hue is reserved strictly for
   warnings/flags.** *"Color as meaning, not decoration."*
+- **The accent is brand-adaptive, not a fixed hue.** Observed across Fable sites:
+  muted **green** (security/wellness/eco — Cairn, Landscip, Bricks), **teal**
+  (SaaS), **blue** (audit), **terracotta/amber** (warm editorial), even
+  **navy + orange** for louder local-business/utility briefs. The *constant* is
+  "exactly one action accent + restraint," **not** a particular color. Pick the
+  accent from the brand, then use it sparingly.
+- **Cinematic option: full-bleed photography as the surface.** For
+  atmosphere-led brands, the "background" is moody, darkened photography (foggy
+  forest, field at dusk) with near-white text and floating cards over it —
+  another flavor of the dark-canvas move (see Register 3, §2). Imagery is often
+  desaturated/monochrome-leaning so one accent still pops.
 
 **Concrete palettes Fable shipped (use as starting points):**
 
@@ -277,6 +309,11 @@ motion only. CSS over video. `prefers-reduced-motion` always.
 - **Prefer CSS/DOM animations over video.** Fable rebuilt a video demo as a
   ~3KB CSS/JS faux-terminal: real DOM text, crisp on retina, mobile-adaptive —
   then *sped it up 35%* so the payoff actually shows.
+- **Signature motion vocabulary** (observed repeatedly, all within the restraint
+  rule): **subtle scroll parallax** on hero imagery/layers; **line-draw / stroke
+  animations** (a rule or path animating in); a soft **glossy sheen** sweep on
+  feature panels; **count-up** stat numerals; and slow ambient pulses
+  (radar/orbit rings). Each is small and purposeful — never a carousel of effects.
 - **Wrap all non-essential motion in `@media (prefers-reduced-motion: reduce)`.**
 
 ---
