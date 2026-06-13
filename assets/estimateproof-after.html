@@ -3,414 +3,384 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EstimateProof — Used-Car Deal Check</title>
+<title>EstimateProof — Don't overpay for the wrong used car</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
+    --near-white:#f5f2ec;
     --accent:#2F6FED;
-    --accent-soft:rgba(47,111,237,.25);
     --ink:#161A1E;
     --paper:#F4F6F8;
-    --cream:#F3EFE7;
-    --near-white:#F7F4EE;
+    --green:#1F9D5B;
+    --muted:rgba(245,242,236,.62);
+    --hairline:rgba(245,242,236,.14);
+    --card-shadow:0 24px 60px -28px rgba(0,0,0,.55), 0 2px 8px rgba(0,0,0,.18);
+    --pill-shadow:0 8px 24px rgba(47,111,237,.28);
+    --serif:'Instrument Serif',Georgia,serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:'Geist Mono','IBM Plex Mono',ui-monospace,monospace;
   }
+
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{width:1200px;height:760px;}
-  body{
-    font-family:'Inter',sans-serif;
-    background:var(--ink);
-    overflow:hidden;
-    -webkit-font-smoothing:antialiased;
-  }
-  .stage{
-    position:relative;
+
+  html,body{
     width:1200px;
     height:760px;
     overflow:hidden;
-    /* moody charcoal-to-slate open-road gradient + warm horizon glow */
-    background:
-      radial-gradient(120% 80% at 72% 88%, rgba(255,176,102,.16) 0%, rgba(255,150,80,.05) 26%, transparent 52%),
-      radial-gradient(90% 70% at 50% 100%, rgba(255,196,128,.10) 0%, transparent 48%),
-      linear-gradient(180deg, #0c0f13 0%, #14191f 38%, #1c242c 64%, #2a343d 84%, #34414c 100%);
   }
-  /* subtle vignette + road perspective lines */
+
+  body{
+    font-family:var(--sans);
+    color:var(--near-white);
+    position:relative;
+    background:#0d1014;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ── Cinematic dusk backdrop ───────────────────────────── */
+  .stage{
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(120% 80% at 50% 118%, rgba(47,111,237,.18) 0%, rgba(47,111,237,0) 55%),
+      radial-gradient(90% 60% at 72% 96%, rgba(255,168,92,.30) 0%, rgba(255,140,60,0) 48%),
+      linear-gradient(180deg, #11161c 0%, #161d25 42%, #1d262f 70%, #232c34 100%);
+  }
   .stage::before{
     content:"";
-    position:absolute;inset:0;
-    background:
-      radial-gradient(140% 120% at 50% 38%, transparent 52%, rgba(0,0,0,.55) 100%);
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:46%;
+    background:radial-gradient(80% 130% at 50% 130%, rgba(255,176,102,.34) 0%, rgba(255,150,80,.10) 38%, rgba(255,150,80,0) 64%);
     pointer-events:none;
   }
   .stage::after{
     content:"";
     position:absolute;
-    left:50%;bottom:0;
-    width:600px;height:340px;
-    transform:translateX(-50%);
+    inset:0;
     background:
-      linear-gradient(180deg, transparent 0%, rgba(255,210,160,.06) 100%);
-    clip-path:polygon(43% 0%, 57% 0%, 100% 100%, 0% 100%);
+      radial-gradient(70% 55% at 50% 100%, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, rgba(8,10,13,.55) 0%, rgba(8,10,13,0) 26%),
+      radial-gradient(120% 100% at 50% 50%, rgba(0,0,0,0) 58%, rgba(0,0,0,.42) 100%);
+    pointer-events:none;
+  }
+  .road{
+    position:absolute;
+    left:50%; bottom:0;
+    width:2px; height:30%;
+    transform:translateX(-50%);
+    background:linear-gradient(0deg, rgba(255,196,130,.55) 0%, rgba(255,196,130,0) 100%);
+    filter:blur(1px);
+    opacity:.5;
     pointer-events:none;
   }
 
-  .pad{
-    position:relative;
-    z-index:2;
-    height:100%;
-    padding:68px 72px;
-    display:flex;
-    flex-direction:column;
-  }
-
-  /* fixed chip top-left */
+  /* ── Product chip (fixed top-left) ─────────────────────── */
   .chip{
     position:absolute;
-    top:26px;left:26px;
+    top:36px; left:64px;
     z-index:6;
-    display:inline-flex;align-items:center;gap:7px;
-    padding:7px 15px;
-    border-radius:999px;
-    background:#10151b;
-    border:1px solid rgba(255,255,255,.10);
-    color:var(--near-white);
-    font-family:'Geist Mono',monospace;
-    font-size:11px;font-weight:600;
-    letter-spacing:.06em;
-    box-shadow:0 8px 24px rgba(0,0,0,.4);
-  }
-  .chip .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(47,111,237,.9);}
-
-  .top{
-    display:flex;align-items:center;justify-content:space-between;
-    padding-top:6px;
-  }
-  .brand{
-    display:flex;align-items:center;gap:9px;
-    color:var(--near-white);
-    font-family:'Geist Mono',monospace;
-    font-size:13px;font-weight:600;letter-spacing:.04em;
-  }
-  .brand .mark{
-    width:22px;height:22px;border-radius:6px;
-    background:linear-gradient(135deg,var(--accent),#5a8cff);
-    box-shadow:0 4px 14px rgba(47,111,237,.5);
-    position:relative;
-  }
-  .brand .mark::after{
-    content:"";position:absolute;inset:6px;
-    border:2px solid #fff;border-radius:2px;opacity:.92;
-  }
-  .nav{
-    display:flex;align-items:center;gap:26px;
-    font-size:13px;color:rgba(247,244,238,.62);font-weight:500;
-  }
-  .nav a{color:inherit;text-decoration:none;}
-
-  .hero{
-    flex:1;
-    display:grid;
-    grid-template-columns:1fr 372px;
-    gap:40px;
+    display:inline-flex;
     align-items:center;
-    padding-top:14px;
+    gap:9px;
+    padding:9px 16px 9px 13px;
+    background:rgba(13,17,22,.72);
+    border:1px solid var(--hairline);
+    border-radius:999px;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    box-shadow:0 6px 20px rgba(0,0,0,.35);
   }
-
-  /* LEFT */
-  .eyebrow{
-    font-family:'Geist Mono',monospace;
-    text-transform:uppercase;
-    font-size:11px;font-weight:600;
-    letter-spacing:.14em;
-    color:#6f9bff;
-    margin-bottom:22px;
-    display:inline-flex;align-items:center;gap:10px;
+  .chip .mark{
+    color:var(--accent);
+    font-size:15px;
+    line-height:1;
+    transform:translateY(.5px);
   }
-  .eyebrow::before{
-    content:"";width:26px;height:1px;background:#6f9bff;opacity:.6;
-  }
-
-  h1{
-    font-family:'Instrument Serif',serif;
-    font-weight:400;
-    color:var(--near-white);
-    font-size:clamp(48px,5.4vw,68px);
-    line-height:1.02;
+  .chip .name{
+    font-weight:600;
+    font-size:14px;
     letter-spacing:-.01em;
-    margin-bottom:22px;
-    max-width:13ch;
-    text-shadow:0 2px 40px rgba(0,0,0,.5);
-  }
-  h1 em{
-    font-style:italic;
-    color:#fff;
-    position:relative;
-    white-space:nowrap;
-  }
-  h1 em::after{
-    content:"";
-    position:absolute;left:0;right:0;bottom:.04em;
-    height:2px;
-    background:linear-gradient(90deg,var(--accent),transparent);
-    opacity:.7;
+    color:var(--near-white);
   }
 
-  .sub{
-    font-size:16.5px;
-    line-height:1.6;
-    color:rgba(244,246,248,.78);
-    max-width:50ch;
-    margin-bottom:30px;
-    font-weight:400;
+  /* ── Hero grid ─────────────────────────────────────────── */
+  .hero{
+    position:relative;
+    z-index:4;
+    height:100%;
+    padding:104px 64px 68px;
+    display:grid;
+    grid-template-columns:55% 40%;
+    column-gap:5%;
+    align-items:center;
   }
-  .sub b{color:var(--near-white);font-weight:600;}
+
+  /* ── Left column ───────────────────────────────────────── */
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:22px;
+  }
+  h1{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:72px;
+    line-height:1.04;
+    letter-spacing:-.012em;
+    color:var(--near-white);
+    margin-bottom:24px;
+  }
+  h1 .it{ font-style:italic; }
+  .subcopy{
+    font-size:16.5px;
+    line-height:1.55;
+    color:var(--muted);
+    max-width:540px;
+    margin-bottom:30px;
+  }
 
   /* VIN input bar */
   .vinbar{
-    display:flex;align-items:center;
+    display:flex;
+    align-items:center;
     gap:8px;
-    background:rgba(247,244,238,.07);
-    border:1px solid rgba(247,244,238,.18);
-    border-radius:999px;
-    padding:7px 7px 7px 20px;
+    width:100%;
     max-width:560px;
+    padding:7px 7px 7px 18px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(245,242,236,.18);
+    border-radius:999px;
     backdrop-filter:blur(8px);
-    box-shadow:0 8px 24px rgba(0,0,0,.35);
-  }
-  .vinbar .vlabel{
-    font-family:'Geist Mono',monospace;
-    font-size:11px;font-weight:600;letter-spacing:.1em;
-    color:rgba(247,244,238,.45);
-    text-transform:uppercase;
-    padding-right:4px;
-    border-right:1px solid rgba(247,244,238,.16);
-    margin-right:6px;
-    white-space:nowrap;
+    -webkit-backdrop-filter:blur(8px);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 10px 30px -18px rgba(0,0,0,.6);
   }
   .vinbar input{
     flex:1;
-    background:transparent;border:none;outline:none;
+    border:none;
+    background:transparent;
     color:var(--near-white);
-    font-family:'Geist Mono',monospace;
-    font-size:14px;letter-spacing:.08em;
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.01em;
+    outline:none;
+    min-width:0;
   }
-  .vinbar input::placeholder{color:rgba(247,244,238,.4);letter-spacing:.04em;}
-  .cta{
-    display:inline-flex;align-items:center;gap:8px;
+  .vinbar input::placeholder{ color:rgba(245,242,236,.45); }
+  .btn{
+    flex-shrink:0;
+    border:none;
+    cursor:pointer;
     background:var(--accent);
     color:#fff;
-    font-weight:600;font-size:14.5px;
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:-.005em;
     padding:13px 22px;
     border-radius:999px;
-    border:none;cursor:pointer;
+    box-shadow:var(--pill-shadow);
     white-space:nowrap;
-    box-shadow:0 8px 24px var(--accent-soft);
-    transition:transform .15s ease;
+    transition:transform .15s cubic-bezier(.16,1,.3,1);
   }
-  .cta svg{width:15px;height:15px;}
-
-  .fineprint{
-    margin-top:16px;
-    font-family:'Geist Mono',monospace;
-    font-size:11px;
-    letter-spacing:.05em;
-    color:rgba(247,244,238,.5);
-    display:flex;align-items:center;gap:8px;
-  }
-  .fineprint .sep{opacity:.4;}
-
-  /* RIGHT — floating decision cards */
-  .cards{
-    position:relative;
-    height:100%;
-    min-height:420px;
-  }
-  .dcard{
-    position:absolute;
-    background:var(--paper);
-    border-radius:16px;
-    padding:20px 22px;
-    box-shadow:0 30px 60px -18px rgba(0,0,0,.6), 0 8px 24px rgba(0,0,0,.25);
-    width:330px;
-  }
-  .dcard.primary{
-    top:30px;right:8px;
-    z-index:3;
-    border:1px solid rgba(47,111,237,.18);
-  }
-  .dcard.secondary{
-    top:262px;right:60px;
-    z-index:2;
-    width:286px;
-    padding:17px 20px;
-    transform:rotate(.5deg);
-  }
-  .dlabel{
-    font-family:'Geist Mono',monospace;
-    text-transform:uppercase;
-    font-size:10px;font-weight:600;letter-spacing:.13em;
-    color:var(--accent);
-    margin-bottom:12px;
-    display:flex;align-items:center;gap:8px;
-  }
-  .dlabel .pulse{
-    width:6px;height:6px;border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 0 0 rgba(47,111,237,.5);
-  }
-  .verdict{
-    display:flex;align-items:baseline;gap:9px;
-    margin-bottom:14px;
-  }
-  .verdict .word{
-    font-family:'Instrument Serif',serif;
-    font-size:30px;color:var(--ink);
-    line-height:1;
-  }
-  .verdict .tag{
-    font-family:'Geist Mono',monospace;
-    font-size:10px;font-weight:600;letter-spacing:.08em;
-    color:#fff;background:var(--accent);
-    padding:4px 9px;border-radius:999px;
-    text-transform:uppercase;
-  }
-  .compare{
-    font-size:13px;color:#3c454d;line-height:1.5;
-    margin-bottom:14px;
-  }
-  .compare b{color:var(--ink);font-weight:600;}
-  .pricerow{
-    display:flex;align-items:center;justify-content:space-between;
-    padding-top:13px;
-    border-top:1px solid rgba(22,26,30,.10);
-  }
-  .pricerow .lbl{
-    font-family:'Geist Mono',monospace;
-    font-size:10px;letter-spacing:.08em;color:#6b757d;
-    text-transform:uppercase;
-  }
-  .pricerow .delta{
-    font-family:'Instrument Serif',serif;
-    font-size:26px;
-    color:#178a4c;
-    display:flex;align-items:center;gap:4px;
-  }
-  .pricerow .delta .arr{
-    color:#178a4c;font-size:16px;
+  .smallprint{
+    font-size:12.5px;
+    color:rgba(245,242,236,.5);
+    margin-top:14px;
+    letter-spacing:.005em;
   }
 
-  .scard-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
-  .scard-row:last-child{margin-bottom:0;}
-  .scard .stat{
-    font-family:'Instrument Serif',serif;
-    font-size:22px;color:var(--ink);
-  }
-  .scard .skey{
-    font-family:'Geist Mono',monospace;
-    font-size:10px;letter-spacing:.08em;color:#6b757d;text-transform:uppercase;
-  }
-  .scard .bar{
-    height:5px;border-radius:3px;background:rgba(22,26,30,.08);
-    margin-top:11px;overflow:hidden;
-  }
-  .scard .bar i{display:block;height:100%;width:62%;background:var(--accent);border-radius:3px;}
-
-  /* tiny floating "similar cars" pip */
-  .pip{
-    position:absolute;
-    right:268px;top:182px;
-    z-index:4;
-    background:var(--ink);
-    color:var(--near-white);
-    border-radius:12px;
-    padding:11px 14px;
-    box-shadow:0 18px 40px -10px rgba(0,0,0,.7);
-    display:flex;align-items:center;gap:10px;
-    border:1px solid rgba(255,255,255,.08);
-  }
-  .pip .av{
+  /* ── Right column: clean card stack ────────────────────── */
+  .stack{
     display:flex;
+    flex-direction:column;
+    gap:20px;
+    width:100%;
   }
-  .pip .av span{
-    width:20px;height:20px;border-radius:50%;
-    border:1.5px solid var(--ink);
-    margin-left:-7px;
-    background:linear-gradient(135deg,#3b4853,#5c6b76);
+
+  .card{
+    background:#ffffff;
+    border-radius:16px;
+    box-shadow:var(--card-shadow);
+    color:var(--ink);
+    border:1px solid rgba(22,26,30,.06);
   }
-  .pip .av span:first-child{margin-left:0;}
-  .pip .ptxt{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.04em;color:rgba(247,244,238,.8);line-height:1.3;}
-  .pip .ptxt b{color:#fff;font-weight:600;}
+
+  .mono-label{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(22,26,30,.5);
+  }
+
+  /* Card 1 — Decision */
+  .decision{ padding:24px 26px 26px; }
+  .decision .top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .decision .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 0 4px rgba(31,157,91,.14);
+  }
+  .decision h2{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:46px;
+    line-height:1;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:4px 0 14px;
+  }
+  .pill-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:rgba(47,111,237,.10);
+    border:1px solid rgba(47,111,237,.22);
+    padding:6px 12px;
+    border-radius:999px;
+    margin-bottom:16px;
+  }
+  .decision .reason{
+    font-size:14px;
+    line-height:1.5;
+    color:rgba(22,26,30,.7);
+    margin-bottom:18px;
+    max-width:300px;
+  }
+  .decision .callout{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    padding-top:16px;
+    border-top:1px solid rgba(22,26,30,.08);
+  }
+  .decision .callout .big{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:25px;
+    letter-spacing:-.02em;
+    color:var(--green);
+  }
+  .decision .callout .cap{
+    font-size:13px;
+    color:rgba(22,26,30,.55);
+  }
+
+  /* Card 2 — Price proof comps */
+  .proof{
+    padding:18px 22px 20px;
+    background:var(--paper);
+  }
+  .proof .mono-label{ margin-bottom:14px; display:block; }
+  .row{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:10px;
+    margin-bottom:11px;
+  }
+  .row .lbl{ font-size:13px; color:rgba(22,26,30,.62); }
+  .row .val{
+    font-family:var(--mono);
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .bar{
+    position:relative;
+    height:6px;
+    border-radius:999px;
+    background:rgba(22,26,30,.09);
+    overflow:hidden;
+  }
+  .bar.median > i{ width:74%; background:var(--accent); }
+  .bar.listing > i{ width:100%; background:rgba(22,26,30,.34); }
+  .bar > i{
+    position:absolute;
+    inset:0 auto 0 0;
+    display:block;
+    height:100%;
+    border-radius:999px;
+  }
+  .barwrap{ margin-bottom:11px; }
+  .barwrap:last-child{ margin-bottom:0; }
 </style>
 </head>
 <body>
   <div class="stage">
-    <div class="chip"><span class="dot"></span>EstimateProof</div>
-
-    <div class="pad">
-      <div class="top">
-        <div class="brand"><span class="mark"></span>EstimateProof</div>
-        <nav class="nav">
-          <a href="#">How it works</a>
-          <a href="#">Sample report</a>
-          <a href="#">For flippers</a>
-        </nav>
-      </div>
-
-      <div class="hero">
-        <div class="left">
-          <div class="eyebrow">Used-car deal check</div>
-          <h1>Don't overpay for <em>the wrong used car.</em></h1>
-          <p class="sub">Paste a VIN or listing. EstimateProof compares similar cars across dealers — <b>because we don't sell the car.</b> See the price proof before you buy, negotiate, skip, or flip.</p>
-
-          <div class="vinbar">
-            <span class="vlabel">VIN</span>
-            <input type="text" placeholder="1HGCM82633A004352  ·  or paste a listing URL" />
-            <button class="cta">
-              Check this car for free
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-
-          <div class="fineprint">
-            Free price-proof preview.<span class="sep">·</span>No subscription.
-          </div>
-        </div>
-
-        <div class="cards">
-          <div class="pip">
-            <div class="av"><span></span><span></span><span></span></div>
-            <div class="ptxt"><b>14 similar cars</b><br>matched across dealers</div>
-          </div>
-
-          <div class="dcard primary">
-            <div class="dlabel"><span class="pulse"></span>Decision</div>
-            <div class="verdict">
-              <span class="word">Negotiate</span>
-              <span class="tag">Good deal w/ room</span>
-            </div>
-            <p class="compare">Current price vs. the <b>same car nearby</b>. This listing sits above three comparable units within 50 miles.</p>
-            <div class="pricerow">
-              <span class="lbl">vs. same car nearby</span>
-              <span class="delta"><span class="arr">▼</span>$1,100 lower</span>
-            </div>
-          </div>
-
-          <div class="dcard secondary scard">
-            <div class="dlabel"><span class="pulse"></span>Price proof</div>
-            <div class="scard-row">
-              <span class="skey">Market median</span>
-              <span class="stat">$18,400</span>
-            </div>
-            <div class="scard-row">
-              <span class="skey">This listing</span>
-              <span class="stat">$19,500</span>
-            </div>
-            <div class="bar"><i></i></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <span class="road"></span>
   </div>
+
+  <div class="chip">
+    <span class="mark">✦</span>
+    <span class="name">EstimateProof</span>
+  </div>
+
+  <main class="hero">
+    <section class="left">
+      <p class="eyebrow">Used-car deal check</p>
+      <h1>Don't overpay for<br><span class="it">the wrong used car</span>.</h1>
+      <p class="subcopy">Paste a VIN or listing. EstimateProof compares similar cars across dealers — because we don't sell the car. See the price proof before you buy, negotiate, skip, or flip.</p>
+
+      <div class="vinbar">
+        <input type="text" placeholder="VIN: 1HGCM82633A004352  · or paste a listing" aria-label="Enter a VIN or paste a listing">
+        <button class="btn">Check this car for free →</button>
+      </div>
+      <p class="smallprint">Free price-proof preview. No subscription.</p>
+    </section>
+
+    <aside class="stack">
+      <div class="card decision">
+        <div class="top">
+          <span class="mono-label">Decision</span>
+          <span class="dot"></span>
+        </div>
+        <h2>Negotiate</h2>
+        <span class="pill-tag">Good deal w/ room</span>
+        <p class="reason">This listing sits above 3 comparable units within 50 miles.</p>
+        <div class="callout">
+          <span class="big">$1,100 lower</span>
+          <span class="cap">than asking is fair</span>
+        </div>
+      </div>
+
+      <div class="card proof">
+        <span class="mono-label">Price proof</span>
+        <div class="barwrap">
+          <div class="row">
+            <span class="lbl">Market median</span>
+            <span class="val">$18,400</span>
+          </div>
+          <div class="bar median"><i></i></div>
+        </div>
+        <div class="barwrap">
+          <div class="row">
+            <span class="lbl">This listing</span>
+            <span class="val">$19,500</span>
+          </div>
+          <div class="bar listing"><i></i></div>
+        </div>
+      </div>
+    </aside>
+  </main>
 </body>
 </html>
