@@ -64,21 +64,19 @@ the brand, don't default to one. The serif-editorial register is the one Fable
 reaches for most on warm, hospitality, editorial, and "crafted" brands; the
 grotesque register is for techy/SaaS/product surfaces.
 
-### Register 1 — Serif-editorial (Fable's signature warm system)
-This is a **four-font** system, not a trio. Verified live on a real Fable-built
-site (delices1922.com):
+### Register 1 — Serif-editorial (Fable's warm system)
+A **three-font** system — a quiet serif display, a sans body, and loud mono labels:
 
 | Role | Font | Specs |
 |---|---|---|
 | **Display & headings** | **Instrument Serif** (`Georgia` fallback) | weight **400** (yes, light — the serif does the work), line-height **1.06**, tracking **-0.005em → -0.015em** |
-| **Accent / featured numerals / pull-quotes** | **Fraunces** | weight **800** for big stat values (`clamp(28px, 5vw, 44px)`); **`font-style: italic`** for editorial captions/asides |
 | **Body & UI text** | **Inter** | sans-serif, utility/longform/controls |
 | **Eyebrows · labels · stats · data** | **Geist Mono** | uppercase, tracking `.10em` (chips) → `.18em` (eyebrows), 10–12px, weight 600, frequently in the accent color |
 
 Key insight: **the display face is a 400-weight serif**, not a heavy grotesque.
-The "weight" comes from the serif's character and the Fraunces-800 accent
-numerals, not from bolding the headline. Pair a quiet serif display with loud
-mono labels and one punchy serif accent.
+The "weight" comes from the serif's character and the contrast with loud mono
+labels — not from bolding the headline. Pair a quiet serif display with crisp
+uppercase mono micro-caps.
 
 ### Register 2 — Grotesque / techy (SaaS & product)
 A **display + body + mono trio**:
@@ -91,10 +89,7 @@ A **display + body + mono trio**:
 
 Here the display *is* heavy (800/850/900) with tight negative tracking.
 
-Load webfonts with `display=swap`. In the serif-editorial register the four
-families are loaded as `next/font` CSS variables (`--font-instrument`,
-`--font-fraunces`, `--font-inter`, `--font-geist-mono`); elsewhere keep it to ~2–3
-webfonts for performance.
+Load webfonts with `display=swap`; keep it to ~2–3 webfonts for performance.
 
 **Fluid type scale — the Utopia-style `clamp()` ladder is a Fable fingerprint:**
 
@@ -108,8 +103,9 @@ webfonts for performance.
 ```
 
 **Weights — register-dependent:**
-- **Serif-editorial:** display/headings at **400** (let the serif carry it); the
-  one loud weight is the **Fraunces 800** accent numeral/pull-quote. Body 400–500.
+- **Serif-editorial:** display/headings at **400** (let the serif carry it);
+  contrast comes from the loud uppercase mono labels, not from a bold display.
+  Body 400–500.
 - **Grotesque/techy:** display heavy — **800 / 850 / 900** — with characteristic
   odd mid-steps **650 / 750** for buttons and nav. Body 400–500.
 
@@ -170,7 +166,7 @@ webfonts for performance.
 ```
 
 ```
-/* "Warm Editorial" — terracotta/amber on cream (verified live, delices1922.com) */
+/* "Warm Editorial" — terracotta/amber on cream (illustrative warm-accent example) */
 --paper:#f5f0e6;  --paper-2:#ebe4d6;   /* warm cream */
 --ink:#16181d;    --ink-2:#41454e;     --ink-3:#5c616b;
 --accent:#a85a22; --accent-strong:#8e4e18; --accent-text:#8e4e18; /* terracotta */

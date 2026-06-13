@@ -1,6 +1,6 @@
 ---
 name: fable-design-system
-description: Award-winning SaaS UI/UX design persona reconstructed from the claude-fable-5 model. Use whenever building, restyling, or extending any website, landing page, SaaS surface, component, or design system — even if the user doesn't say "design." Covers typography in two registers (serif-editorial: Instrument Serif + Fraunces + Inter + Geist Mono; and grotesque/techy: Bricolage/Archivo trios — fluid clamp ladders), spacing, color (warm paper base, one meaningful accent, light-app/dark-canvas split), buttons (pill CTAs, ghost-invert hover), shadows (soft negative-spread), border radius (encodes brand voice), and animation (restraint, CSS-over-video). Triggers on: build a page/site/landing/hero/pricing/UI, restyle, design tokens, "no generic Tailwind", "no default fonts", make it look good.
+description: Award-winning SaaS UI/UX design persona reconstructed from the claude-fable-5 model. Use whenever building, restyling, or extending any website, landing page, SaaS surface, component, or design system — even if the user doesn't say "design." Covers typography in two registers (serif-editorial: Instrument Serif + Inter + Geist Mono; and grotesque/techy: Bricolage/Archivo trios — fluid clamp ladders), spacing, color (warm paper base, one meaningful accent, light-app/dark-canvas split), buttons (pill CTAs, ghost-invert hover), shadows (soft negative-spread), border radius (encodes brand voice), and animation (restraint, CSS-over-video). Triggers on: build a page/site/landing/hero/pricing/UI, restyle, design tokens, "no generic Tailwind", "no default fonts", make it look good.
 ---
 
 # Fable 5 Design System
@@ -23,11 +23,11 @@ operating rules:
 ## Typography
 Two registers — match to the brand, never default to one. Never a default-only
 stack.
-- **Serif-editorial (Fable's signature; warm/hospitality/editorial brands):** a
-  FOUR-font system — **Instrument Serif** display at weight **400** (the serif
-  carries it, not bold) + **Fraunces** accent (weight **800** for big stat
-  numerals, `font-style:italic` for captions/pull-quotes) + **Inter** body +
-  **Geist Mono** labels. Display line-height ~1.06, tracking -0.005…-0.015em.
+- **Serif-editorial (Fable's warm system; hospitality/editorial brands):** a
+  THREE-font system — **Instrument Serif** display at weight **400** (the serif
+  carries it, not bold) + **Inter** body + **Geist Mono** uppercase labels.
+  Display line-height ~1.06, tracking -0.005…-0.015em. Contrast comes from the
+  loud mono micro-caps, not a bold display.
 - **Grotesque/techy (SaaS/product):** display+body+mono trio — Bricolage
   Grotesque/Inter/IBM Plex Mono · Archivo/·/Spline Sans Mono. Display HEAVY
   800/850/900 (+ mid-steps 650/750), negative tracking to -0.04em.
@@ -35,7 +35,7 @@ stack.
 Both: fluid Utopia-style `clamp()` type ladder; body line-height 1.5; **mono
 micro-caps** 10–13px uppercase, +0.10–0.18em tracking, weight 600, often in the
 accent color (eyebrows/labels/stats). `display=swap`. Signature: one headline
-word/accent numeral in the accent color.
+word in the accent color.
 
 ## Spacing
 Fluid `clamp()` section padding (`clamp(64px,8vw,104px)`); grid/flex `gap`, never

@@ -16,7 +16,7 @@ defaults. Do **not** use default fonts. Warm editorial restraint over flashy "AI
 
 ## Typography
 - Two registers — match to the brand, never default to one. Never a default-only stack.
-- **Serif-editorial (Fable's signature; warm/hospitality/editorial brands):** a FOUR-font system — **Instrument Serif** display at weight **400** (the serif carries it, not bold) + **Fraunces** accent (weight **800** for big stat numerals, `font-style:italic` for captions/pull-quotes) + **Inter** body + **Geist Mono** labels. Display line-height ~1.06, tracking -0.005…-0.015em.
+- **Serif-editorial (Fable's warm system; hospitality/editorial brands):** a THREE-font system — **Instrument Serif** display at weight **400** (the serif carries it, not bold) + **Inter** body + **Geist Mono** uppercase labels. Display line-height ~1.06, tracking -0.005…-0.015em. Contrast comes from the loud mono micro-caps, not a bold display.
 - **Grotesque/techy (SaaS/product):** display + body + mono trio — Bricolage Grotesque / Inter / IBM Plex Mono · Archivo / · / Spline Sans Mono. Display HEAVY **800/850/900** (+ mid-steps 650/750), negative tracking to -0.04em.
 - Both: fluid `clamp()` type ladder (Utopia-style); body line-height `1.5`. **Mono micro-caps**: 10–13px uppercase, +0.10–0.18em tracking, weight 600, often in accent color (eyebrows/labels/stats/data).
 - Webfonts `display=swap`.
