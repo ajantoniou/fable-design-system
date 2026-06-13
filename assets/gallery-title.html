@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1270px;height:760px;overflow:hidden}
+  body{
+    font-family:'Inter',sans-serif;
+    background:
+      radial-gradient(100% 90% at 12% 8%, rgba(168,90,34,.12) 0%, rgba(168,90,34,0) 48%),
+      radial-gradient(100% 90% at 92% 96%, rgba(13,148,136,.10) 0%, rgba(13,148,136,0) 46%),
+      #f5f0e6;
+    color:#16181d;position:relative;display:flex;flex-direction:column;
+    justify-content:center;padding:0 96px;
+  }
+  .eyebrow{font-family:'Geist Mono',monospace;font-weight:600;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#a85a22;margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+  .eyebrow svg{width:20px;height:20px;color:#a85a22;}
+  h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:92px;line-height:1.02;letter-spacing:-.015em;color:#16181d;margin-bottom:28px;max-width:1000px;}
+  h1 em{font-style:italic;}
+  p.sub{font-size:23px;line-height:1.5;color:#4d5a55;max-width:760px;margin-bottom:40px;}
+  .row{display:flex;align-items:center;gap:14px;}
+  .pill{display:inline-flex;align-items:center;gap:9px;background:#16201c;color:#f5f0e6;font-weight:600;font-size:17px;padding:15px 28px;border-radius:999px;box-shadow:0 8px 24px rgba(22,32,28,.22);}
+  .ghost{font-family:'Geist Mono',monospace;font-size:14px;letter-spacing:.06em;color:#5c616b;}
+  .agents{position:absolute;bottom:48px;left:96px;font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(22,24,29,.42);}
+  .free{position:absolute;top:56px;right:96px;font-family:'Geist Mono',monospace;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#0d9488;border:1.5px solid rgba(13,148,136,.35);padding:9px 16px;border-radius:999px;}
+</style></head>
+<body>
+  <div class="free">Free · MIT</div>
+  <div class="eyebrow">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
+    Fable Design System
+  </div>
+  <h1>Bring <em>Fable-style</em> design<br>taste to any AI coding agent.</h1>
+  <p class="sub">The design quality everyone wanted back — as a free, drop-in skill your agent reads before it builds.</p>
+  <div class="row">
+    <span class="pill">Stop shipping generic Tailwind →</span>
+    <span class="ghost">github.com/ajantoniou/fable-design-system</span>
+  </div>
+  <div class="agents">For Claude · Opus 4.8 · Codex · Cursor · Gemini · Antigravity</div>
+</body></html>

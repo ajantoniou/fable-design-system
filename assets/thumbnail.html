@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:480px;height:480px;overflow:hidden}
+  body{
+    display:flex;align-items:center;justify-content:center;
+    background:
+      radial-gradient(120% 120% at 30% 10%, rgba(168,90,34,.14) 0%, rgba(168,90,34,0) 50%),
+      radial-gradient(120% 120% at 90% 95%, rgba(13,148,136,.12) 0%, rgba(13,148,136,0) 50%),
+      #f5f0e6;
+    position:relative;
+  }
+  /* subtle paper grain hairlines */
+  .frame{position:absolute;inset:26px;border:1.5px solid rgba(22,24,29,.10);border-radius:30px;}
+  .wrap{display:flex;flex-direction:column;align-items:center;gap:26px;z-index:2;text-align:center;padding:0 30px;}
+  .spark{width:96px;height:96px;color:#a85a22;}
+  .word{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:62px;line-height:.98;color:#16181d;letter-spacing:-.01em;}
+  .word em{font-style:italic;}
+  .tag{font-family:'Geist Mono',monospace;font-weight:600;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:#a85a22;}
+</style></head>
+<body>
+  <div class="frame"></div>
+  <div class="wrap">
+    <svg class="spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <path d="M12 1.5v21M1.5 12h21M4.5 4.5l15 15M19.5 4.5l-15 15"/>
+      <path d="M12 5.2 13 11l5.8 1-5.8 1-1 5.8-1-5.8L5.2 12 11 11z" fill="currentColor" stroke="none" opacity=".9"/>
+    </svg>
+    <div class="word">Fable<br><em>Design</em></div>
+    <div class="tag">design&nbsp;system</div>
+  </div>
+</body></html>
