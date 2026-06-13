@@ -1,17 +1,23 @@
 <div align="center">
 
-# 🎨 Fable Design Skill
+# 🎨 Fable Design System
 
-### Give your AI coding agent an award-winning SaaS designer's eye.
+### Bring Fable-style design taste to any AI coding agent.
 
-**A drop-in design persona for Claude, Codex, and Antigravity — so your AI stops shipping generic Tailwind defaults and starts shipping designs people screenshot.**
+**A drop-in design persona for Claude, Opus 4.8, Codex, Cursor, Gemini & Antigravity — so your AI stops shipping generic Tailwind defaults and starts shipping designs people screenshot.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg)](./LICENSE)
-[![For: Claude · Codex · Antigravity](https://img.shields.io/badge/for-Claude%20·%20Codex%20·%20Antigravity-0d9488.svg)](#install)
+[![For: Claude · Codex · Cursor · Gemini](https://img.shields.io/badge/for-Claude%20·%20Codex%20·%20Cursor%20·%20Gemini-0d9488.svg)](#install)
 [![Price: Free](https://img.shields.io/badge/price-free-f97362.svg)](#)
 
 *Built by **[Dr. Antoniou](https://www.healthbrew.app)** — physician & builder.*
 *Offered free for creatives & content creators by **[UploadCheck](https://www.uploadcheck.app)**.*
+
+<br>
+
+![Before and after: the same landing page built with a default AI agent vs. with the Fable Design System](assets/before-after.gif)
+
+<sub>Same prompt, same content. Left: what AI agents ship by default. Right: the same page with the Fable Design System installed.</sub>
 
 </div>
 

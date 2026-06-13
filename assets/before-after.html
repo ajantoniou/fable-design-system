@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fable Design System — Before / After</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1600px; }
+  body {
+    font-family: system-ui, sans-serif;
+    background:#0b0d10;
+    display:flex;
+    width:1600px;
+  }
+  .pane { width:800px; height:1000px; position:relative; overflow:hidden; }
+
+  /* ---- shared label chip ---- */
+  .tag {
+    position:absolute; top:28px; left:28px; z-index:10;
+    font:600 12px/1 ui-monospace,monospace; letter-spacing:.12em; text-transform:uppercase;
+    padding:8px 14px; border-radius:999px;
+  }
+  .tag.before { background:#e5e7eb; color:#6b7280; }
+  .tag.after  { background:#16201c; color:#f5f0e6; border:1px solid #2c3a33; }
+
+  /* =================== BEFORE — generic default AI =================== */
+  .before-pane { background:#ffffff; padding:96px 72px 0; }
+  .b-nav { display:flex; justify-content:space-between; align-items:center; margin-bottom:80px; }
+  .b-logo { font:700 20px/1 system-ui; color:#111827; }
+  .b-nav ul { display:flex; gap:28px; list-style:none; }
+  .b-nav li { font:400 15px/1 system-ui; color:#6b7280; }
+  .b-cta { background:#2563eb; color:#fff; font:500 15px/1 system-ui; padding:10px 18px; border-radius:6px; }
+  .b-hero h1 { font:700 52px/1.1 system-ui; color:#111827; margin-bottom:20px; letter-spacing:-.02em; }
+  .b-hero p { font:400 18px/1.6 system-ui; color:#6b7280; max-width:520px; margin-bottom:32px; }
+  .b-btns { display:flex; gap:14px; margin-bottom:72px; }
+  .b-btns a { font:500 16px/1 system-ui; padding:14px 26px; border-radius:6px; }
+  .b-primary { background:#2563eb; color:#fff; }
+  .b-secondary { background:#fff; color:#374151; border:1px solid #d1d5db; }
+  .b-stats { display:flex; gap:48px; }
+  .b-stat .n { font:700 30px/1 system-ui; color:#111827; }
+  .b-stat .l { font:400 14px/1.4 system-ui; color:#9ca3af; margin-top:6px; }
+  .b-cards { display:flex; gap:20px; margin-top:64px; }
+  .b-card { flex:1; border:1px solid #e5e7eb; border-radius:8px; padding:24px; }
+  .b-card h3 { font:600 17px/1 system-ui; color:#111827; margin-bottom:10px; }
+  .b-card p { font:400 14px/1.5 system-ui; color:#6b7280; }
+  .b-icon { width:36px; height:36px; border-radius:8px; background:#dbeafe; margin-bottom:14px; }
+
+  /* =================== AFTER — Fable persona =================== */
+  .after-pane { background:#f5f0e6; padding:96px 72px 0; color:#16201c; }
+  .a-eyebrow { font:600 12px/1 "Geist Mono",monospace; letter-spacing:.18em; text-transform:uppercase; color:#a85a22; margin-bottom:0; }
+  .a-nav { display:flex; justify-content:space-between; align-items:center; margin-bottom:84px; }
+  .a-logo { display:flex; align-items:center; gap:10px; font:400 24px/1 "Instrument Serif",serif; color:#16201c; }
+  .a-spark { width:18px; height:18px; color:#a85a22; }
+  .a-nav ul { display:flex; gap:30px; list-style:none; }
+  .a-nav li { font:500 14px/1 "Inter",sans-serif; color:#4d5a55; }
+  .a-cta-top { background:#16201c; color:#f5f0e6; font:600 13px/1 "Inter"; padding:11px 20px; border-radius:999px; }
+  .a-hero .eb { font:600 12px/1 "Geist Mono",monospace; letter-spacing:.18em; text-transform:uppercase; color:#a85a22; margin-bottom:22px; }
+  .a-hero h1 { font:400 64px/1.04 "Instrument Serif",serif; letter-spacing:-.01em; color:#16181d; margin-bottom:22px; max-width:600px; }
+  .a-hero h1 em { font-style:italic; }
+  .a-hero p { font:400 18px/1.55 "Inter",sans-serif; color:#4d5a55; max-width:480px; margin-bottom:34px; }
+  .a-btns { display:flex; gap:14px; align-items:center; margin-bottom:76px; }
+  .a-primary { background:#a85a22; color:#fff; font:600 15px/1 "Inter"; padding:15px 30px; border-radius:999px; box-shadow:0 8px 24px rgba(168,90,34,.25); display:inline-flex; align-items:center; gap:8px; }
+  .a-ghost { background:transparent; color:#16201c; font:600 15px/1 "Inter"; padding:14px 28px; border-radius:999px; border:1.5px solid #16201c; }
+  .a-stats { display:flex; gap:54px; }
+  .a-stat .n { font:400 38px/1 "Instrument Serif",serif; color:#16181d; }
+  .a-stat .l { font:600 11px/1.4 "Geist Mono",monospace; letter-spacing:.1em; text-transform:uppercase; color:#5c616b; margin-top:8px; }
+  .a-cards { display:flex; gap:18px; margin-top:60px; }
+  .a-card { flex:1; background:#fffdf8; border:1px solid #e7ddc9; border-radius:16px; padding:26px; box-shadow:0 1px 0 rgba(26,24,21,.04),0 18px 40px -22px rgba(26,24,21,.18); }
+  .a-card .ci { width:34px; height:34px; color:#a85a22; margin-bottom:14px; }
+  .a-card h3 { font:400 21px/1.1 "Instrument Serif",serif; color:#16181d; margin-bottom:8px; }
+  .a-card p { font:400 14px/1.55 "Inter",sans-serif; color:#5c616b; }
+
+  /* center seam divider with VS */
+  .seam { position:absolute; top:0; left:800px; width:0; height:1000px; z-index:20; }
+  .vs {
+    position:absolute; top:472px; left:-28px; width:56px; height:56px; border-radius:999px;
+    background:#16201c; color:#f5f0e6; display:flex; align-items:center; justify-content:center;
+    font:700 15px/1 system-ui; letter-spacing:.04em; box-shadow:0 8px 30px rgba(0,0,0,.4);
+    border:2px solid #f5f0e6;
+  }
+</style>
+</head>
+<body>
+  <!-- ============ BEFORE ============ -->
+  <div class="pane before-pane">
+    <div class="tag before">Default AI output</div>
+    <nav class="b-nav">
+      <div class="b-logo">Lumen</div>
+      <ul><li>Features</li><li>Pricing</li><li>About</li><li>Blog</li></ul>
+      <a class="b-cta">Get started</a>
+    </nav>
+    <div class="b-hero">
+      <h1>Build better habits with Lumen</h1>
+      <p>Lumen helps you track your habits and stay focused every day with simple tools and reminders that work.</p>
+      <div class="b-btns">
+        <a class="b-primary">Get started</a>
+        <a class="b-secondary">Learn more</a>
+      </div>
+    </div>
+    <div class="b-stats">
+      <div class="b-stat"><div class="n">50K+</div><div class="l">Active users</div></div>
+      <div class="b-stat"><div class="n">4.8</div><div class="l">App rating</div></div>
+      <div class="b-stat"><div class="n">92%</div><div class="l">Stick with it</div></div>
+    </div>
+    <div class="b-cards">
+      <div class="b-card"><div class="b-icon"></div><h3>Track habits</h3><p>Log your daily habits and see your progress over time.</p></div>
+      <div class="b-card"><div class="b-icon"></div><h3>Stay focused</h3><p>Block distractions and focus on what matters most.</p></div>
+      <div class="b-card"><div class="b-icon"></div><h3>Get reminders</h3><p>Gentle nudges keep you on track throughout the day.</p></div>
+    </div>
+  </div>
+
+  <!-- ============ AFTER ============ -->
+  <div class="pane after-pane">
+    <div class="tag after">Fable Design System</div>
+    <nav class="a-nav">
+      <div class="a-logo">
+        <svg class="a-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
+        Lumen
+      </div>
+      <ul><li>Method</li><li>Pricing</li><li>Stories</li><li>Journal</li></ul>
+      <a class="a-cta-top">Start free</a>
+    </nav>
+    <div class="a-hero">
+      <div class="eb">— A quieter kind of focus</div>
+      <h1>Build the days you<br>actually <em>meant</em> to live.</h1>
+      <p>Lumen turns scattered intentions into a calm daily rhythm — gentle structure, never another buzzing to-do list.</p>
+      <div class="a-btns">
+        <a class="a-primary">Start your first week →</a>
+        <a class="a-ghost">See the method</a>
+      </div>
+    </div>
+    <div class="a-stats">
+      <div class="a-stat"><div class="n">50,400</div><div class="l">days reclaimed</div></div>
+      <div class="a-stat"><div class="n">4.8★</div><div class="l">on the App Store</div></div>
+      <div class="a-stat"><div class="n">92%</div><div class="l">still here at 90 days</div></div>
+    </div>
+    <div class="a-cards">
+      <div class="a-card">
+        <svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>One ritual a day</h3><p>Not fifty habits — one quiet ritual, repeated, until it's just who you are.</p>
+      </div>
+      <div class="a-card">
+        <svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+        <h3>Measured, not nagged</h3><p>Progress you can see and feel — no streak-shaming, no red badges.</p>
+      </div>
+      <div class="a-card">
+        <svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 109 9 7 7 0 01-9-9z"/></svg>
+        <h3>Calm by design</h3><p>Warm, unhurried, and quiet — an app that lowers your shoulders.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="seam"><div class="vs">VS</div></div>
+</body>
+</html>
