@@ -15,12 +15,11 @@ defaults. Do **not** use default fonts. Warm editorial restraint over flashy "AI
 4. **Self-critique by measurement** (contrast ratios, value separation) — fix root causes, not symptoms.
 
 ## Typography
-- Always a **display + body + mono** trio. Never a default-only stack (no Inter-only/Roboto/Arial/system-ui as the face).
-- Chosen pairings: Bricolage Grotesque / Inter / IBM Plex Mono · Archivo / · / Spline Sans Mono · Instrument Serif or Fraunces Italic / Geist / Geist Mono.
-- Fluid `clamp()` type ladder (Utopia-style). Heavy display weights **800/850/900** + mid-steps 650/750.
-- Display: negative tracking `-0.015em…-0.04em`, line-height `1.04–1.06`. Body `1.5`.
-- **Mono micro-caps**: 10–13px uppercase, positive tracking `0.10–0.18em`, for eyebrows/badges/data.
-- Webfonts `&display=swap`, two max.
+- Two registers — match to the brand, never default to one. Never a default-only stack.
+- **Serif-editorial (Fable's signature; warm/hospitality/editorial brands):** a FOUR-font system — **Instrument Serif** display at weight **400** (the serif carries it, not bold) + **Fraunces** accent (weight **800** for big stat numerals, `font-style:italic` for captions/pull-quotes) + **Inter** body + **Geist Mono** labels. Display line-height ~1.06, tracking -0.005…-0.015em.
+- **Grotesque/techy (SaaS/product):** display + body + mono trio — Bricolage Grotesque / Inter / IBM Plex Mono · Archivo / · / Spline Sans Mono. Display HEAVY **800/850/900** (+ mid-steps 650/750), negative tracking to -0.04em.
+- Both: fluid `clamp()` type ladder (Utopia-style); body line-height `1.5`. **Mono micro-caps**: 10–13px uppercase, +0.10–0.18em tracking, weight 600, often in accent color (eyebrows/labels/stats/data).
+- Webfonts `display=swap`.
 
 ## Spacing
 - Fluid `clamp()` section padding (e.g. `clamp(64px, 8vw, 104px)`); grid/flex `gap`, never bare-sibling whitespace. Even-8 scale. Containers 1120–1440px. Mobile-first `min-width` queries.

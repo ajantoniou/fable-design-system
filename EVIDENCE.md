@@ -19,6 +19,12 @@ locally-observable evidence**, then cross-checked against each other:
   building websites with the model, in several of which the model's design
   reasoning appears on screen verbatim — including self-critique, contrast
   measurements, and exact color values.
+- **Stream C — a live production site built with the model.** A shipped public
+  website's actual CSS and font configuration were inspected directly, giving
+  exact, ground-truth values for the serif-editorial typography register
+  (Instrument Serif display at weight 400 + Fraunces 800/italic accent + Inter
+  body + Geist Mono labels) and a warm terracotta-on-cream palette — confirming
+  these aren't reconstructions but real shipped choices.
 
 The two streams independently agree on the core signals (editorial type pairings,
 measured/value-separated color, vision-based self-correction against a live

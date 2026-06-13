@@ -59,16 +59,42 @@ This is the behavioral spine. The aesthetics below are downstream of *how* you w
 `Inter`-as-the-only-font, `Roboto`, `Arial`, `system-ui` as the design face.
 Always a deliberate **display + body + mono** trio.
 
-**Pairings Fable actually chose (pick one, or pair in this spirit):**
+**Fable works in two distinct typographic registers** — match the register to
+the brand, don't default to one. The serif-editorial register is the one Fable
+reaches for most on warm, hospitality, editorial, and "crafted" brands; the
+grotesque register is for techy/SaaS/product surfaces.
+
+### Register 1 — Serif-editorial (Fable's signature warm system)
+This is a **four-font** system, not a trio. Verified live on a real Fable-built
+site (delices1922.com):
+
+| Role | Font | Specs |
+|---|---|---|
+| **Display & headings** | **Instrument Serif** (`Georgia` fallback) | weight **400** (yes, light — the serif does the work), line-height **1.06**, tracking **-0.005em → -0.015em** |
+| **Accent / featured numerals / pull-quotes** | **Fraunces** | weight **800** for big stat values (`clamp(28px, 5vw, 44px)`); **`font-style: italic`** for editorial captions/asides |
+| **Body & UI text** | **Inter** | sans-serif, utility/longform/controls |
+| **Eyebrows · labels · stats · data** | **Geist Mono** | uppercase, tracking `.10em` (chips) → `.18em` (eyebrows), 10–12px, weight 600, frequently in the accent color |
+
+Key insight: **the display face is a 400-weight serif**, not a heavy grotesque.
+The "weight" comes from the serif's character and the Fraunces-800 accent
+numerals, not from bolding the headline. Pair a quiet serif display with loud
+mono labels and one punchy serif accent.
+
+### Register 2 — Grotesque / techy (SaaS & product)
+A **display + body + mono trio**:
 
 | System | Display | Body | Mono |
 |---|---|---|---|
-| SaaS original ("Editing Bay") | **Bricolage Grotesque** | Inter | **IBM Plex Mono** |
-| Dark / techy | Inter (heavy) | Inter | **JetBrains Mono** |
-| Broadcast / QC | **Archivo** | Archivo | **Spline Sans Mono** |
-| Editorial / audit | **Instrument Serif** or **Fraunces Italic** | **Geist** | **Geist Mono** |
+| SaaS ("Editing Bay") | **Bricolage Grotesque** | Inter | **IBM Plex Mono** |
+| Dark / techy | Inter (heavy 800/900) | Inter | **JetBrains Mono** |
+| Broadcast / QC | **Archivo** (variable width) | Archivo | **Spline Sans Mono** |
 
-Load webfonts with `&display=swap`. Two webfonts max for performance.
+Here the display *is* heavy (800/850/900) with tight negative tracking.
+
+Load webfonts with `display=swap`. In the serif-editorial register the four
+families are loaded as `next/font` CSS variables (`--font-instrument`,
+`--font-fraunces`, `--font-inter`, `--font-geist-mono`); elsewhere keep it to ~2–3
+webfonts for performance.
 
 **Fluid type scale — the Utopia-style `clamp()` ladder is a Fable fingerprint:**
 
@@ -81,14 +107,16 @@ Load webfonts with `&display=swap`. Two webfonts max for performance.
 /* hero can push to clamp(40px, 5vw, 58px) and beyond */
 ```
 
-**Weights — go heavier and odder than defaults.** Display headings at
-**800 / 850 / 900**, with characteristic mid-steps **650 / 750** for buttons and
-nav. Body at 400–500.
+**Weights — register-dependent:**
+- **Serif-editorial:** display/headings at **400** (let the serif carry it); the
+  one loud weight is the **Fraunces 800** accent numeral/pull-quote. Body 400–500.
+- **Grotesque/techy:** display heavy — **800 / 850 / 900** — with characteristic
+  odd mid-steps **650 / 750** for buttons and nav. Body 400–500.
 
-**Tracking & line-height:**
-- Display: tight negative tracking, `-0.015em` → `-0.04em` on the largest sizes; line-height `1.04`–`1.06`.
+**Tracking & line-height (both registers):**
+- Display: tight negative tracking — `-0.005em → -0.015em` (serif), down to `-0.04em` on the largest grotesque sizes; line-height `1.04`–`1.06`.
 - Body: `line-height: 1.5` (1.65 for long-form prose).
-- **Mono micro-caps** (the connective texture): 10–13px, `text-transform: uppercase`, **positive** tracking `0.10em`–`0.18em`. Use for eyebrows, kickers, badges, filenames, timecodes, table headers, coordinates/codes.
+- **Mono micro-caps** (the connective texture, used in *both* registers): 10–13px, `text-transform: uppercase`, **positive** tracking `0.10em`–`0.18em`, weight 600, often in the accent color. Use for eyebrows, kickers, badges, stats, filenames, timecodes, table headers, coordinates/codes.
 
 **Signature treatment:** one word of a headline colored in the accent
 ("two-tone headline") — e.g. `See every layer of your business, <span class="accent">rendered live.</span>`
@@ -140,6 +168,19 @@ nav. Body at 400–500.
 --ink:#161A1E; --ink-2:#363C42; --ink-3:#5F676E;
 --accent:#2F6FED;  /* blue — actions */
 ```
+
+```
+/* "Warm Editorial" — terracotta/amber on cream (verified live, delices1922.com) */
+--paper:#f5f0e6;  --paper-2:#ebe4d6;   /* warm cream */
+--ink:#16181d;    --ink-2:#41454e;     --ink-3:#5c616b;
+--accent:#a85a22; --accent-strong:#8e4e18; --accent-text:#8e4e18; /* terracotta */
+--accent-pastel:#f2b06a;  --gold:#8e6a18;
+--crest:#1c2129;  --crest-2:#14181f;   --on-crest:#efe7d8;  /* dark "crest" panel + cream text */
+```
+The **"crest"** tokens are the editorial register's version of the dark
+device-canvas: warm-cream page, with deep near-black `#1c2129` panels (footer,
+feature blocks) carrying cream `#efe7d8` text. Same "light page / dark panel"
+move, warm palette.
 
 **Gradients: sparing and soft, or banned.** When used, low-opacity ambient
 washes only — `linear-gradient(160deg, rgba(217,236,255,.7), transparent 34%)`.

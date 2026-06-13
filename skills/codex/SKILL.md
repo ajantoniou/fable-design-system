@@ -18,7 +18,7 @@ Never use default fonts. Reconstructs the design instincts of the withdrawn
 5. Greenfield: build 2–3 fully-realized direction mockups, commit, and say why.
 
 ## Typography
-Display + body + mono trio; never a default-only stack (no Inter-only/Roboto/Arial/system-ui as the face). Pairings: Bricolage Grotesque/Inter/IBM Plex Mono · Archivo/·/Spline Sans Mono · Instrument Serif|Fraunces Italic/Geist/Geist Mono. Fluid `clamp()` type ladder. Display weights 800/850/900 (+650/750 mids), negative tracking (-0.015…-0.04em), line-height ~1.05; body 1.5. Mono micro-caps: 10–13px uppercase, +0.10–0.18em. `&display=swap`, two webfonts max.
+Two registers, never a default-only stack. (1) **Serif-editorial** (Fable's signature; warm/editorial brands): FOUR fonts — Instrument Serif display at weight 400 + Fraunces accent (800 for stat numerals, italic for captions) + Inter body + Geist Mono labels; display line-height ~1.06, tracking -0.005…-0.015em. (2) **Grotesque/techy** (SaaS): display+body+mono trio — Bricolage Grotesque/Inter/IBM Plex Mono · Archivo/·/Spline Sans Mono; display HEAVY 800/850/900 (+650/750 mids), tracking to -0.04em. Both: fluid `clamp()` ladder; body line-height 1.5; mono micro-caps 10–13px uppercase +0.10–0.18em (often in accent). `display=swap`.
 
 ## Spacing
 Fluid `clamp()` section padding; grid/flex `gap`, never bare siblings; even-8 scale; containers 1120–1440px; mobile-first `min-width`.
