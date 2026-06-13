@@ -1,19 +1,23 @@
-# Product Hunt launch kit — Fable Design Skill
+# Product Hunt launch kit — Fable Design System
 
 Copy-paste from here on launch day. Fields map to Product Hunt's submission form.
+
+> **Strategy (Alex's call):** keep **Fable** in the *title* — it's the entire
+> marketing hook ("the Fable design taste everyone wanted back"). Put **Claude /
+> Anthropic / Fable** in the *description* for SEO/discovery (people search
+> "Claude Fable"), while keeping the project legally and branding-wise distinct.
 
 ---
 
 ## Name
-**Fable Design Skill**
+**Fable Design System**
 
 ## Tagline (60 char max — PH counts hard)
-Pick one:
-- `Give your AI coding agent an award-winning designer's eye` (56)
-- `Stop your AI from shipping generic Tailwind. Free skill.` (54)
-- `An award-winning SaaS design brain for Claude, Codex & more` (58)
+**Bring Fable-style design taste to any AI coding agent** (54)
 
-**Recommended:** *Give your AI coding agent an award-winning designer's eye*
+Backups:
+- `The Fable design taste, as a free skill for any AI agent` (55)
+- `Make any AI coding agent design like Fable. Free, MIT.` (53)
 
 ## Topics / Categories (pick 3)
 - Design Tools
@@ -24,13 +28,11 @@ Pick one:
 - **Website / repo:** https://github.com/ajantoniou/fable-design-system
 - Also mention: https://www.uploadcheck.app and https://www.healthbrew.app
 
-## Description (260 char max on the listing)
-> AI coding agents ship the same gray-Inter-on-white template every time. Fable
-> Design Skill is a free, drop-in design persona for Claude, Codex & Antigravity
-> that makes your agent design like an award-winning SaaS designer — real type,
-> warm palettes, measured polish.
-
-*(259 chars — trim if PH complains.)*
+## Description (the discovery-optimized version — Fable in title, "Claude Fable" here)
+> When Anthropic's Fable experiments disappeared, many developers missed the
+> design quality they produced. Fable Design System is a free MIT-licensed
+> project that helps Claude, Opus 4.8, Codex, Cursor, Gemini, and other coding
+> agents build more polished websites and apps.
 
 ---
 
