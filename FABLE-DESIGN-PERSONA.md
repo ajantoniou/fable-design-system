@@ -178,6 +178,19 @@ ink). A clean geometric "spark," never a clip-art icon.
   forest, field at dusk) with near-white text and floating cards over it —
   another flavor of the dark-canvas move (see Register 3, §2). Imagery is often
   desaturated/monochrome-leaning so one accent still pops.
+- **High-end "neon-on-near-black" register.** For premium / 3D / "award-winning"
+  builds, Fable goes the *opposite* of warm-paper: a near-black body
+  (`#11010a` / `#0b0b0d`) with **one electric neon accent** (e.g. `#FF005E`),
+  used for the headline word, CTA, and glows. Still one accent + restraint — just
+  loud instead of warm. Note the body bg is often even darker than the visible
+  viewport color (a deliberate value-separation trick).
+- **Iridescent color-shifting gradients** are Fable's signature "wow" surface for
+  3D/hero objects — e.g. *"color-shifting hyperpaint that flows from electric
+  magenta → violet → deep cyan."* Used on a hero render or accent object, never
+  as flat-section background filler.
+- **AI-generated cinematic hero imagery.** For these premium builds Fable
+  generates the hero art (via an image MCP like Higgsfield) — a moody 3D render
+  or product shot — rather than stock photography, so the hero is bespoke.
 
 **Concrete palettes Fable shipped (use as starting points):**
 
@@ -243,7 +256,11 @@ animated particles, "AI sparkle," glassmorphism-as-decoration.
   .btn-ghost:hover { background: var(--ink); color: var(--paper); }  /* invert */
   ```
 - **Ghost buttons invert to a solid fill on hover.** Hover is a lift or a color
-  shift — never flashy.
+  shift — never flashy. The recurring concrete recipe (verbatim from Fable's
+  builds): **pill nav/ghost buttons** at `font-manrope`, `text-[12px]`, that
+  **`hover:bg-white hover:text-black`** — i.e. a crisp light-fill / dark-text
+  invert on hover. Mirror it to the brand (ink-fill on light pages, white-fill on
+  dark pages).
 - **≥44px hit targets** (especially mobile; grow hamburgers/icon buttons to 44px).
 - **Conversion-aware button states:** bake the value into the state — e.g. CTA
   turns sage with a struck-through old price when a promo code applies, *before* the click.
@@ -316,6 +333,32 @@ motion only. CSS over video. `prefers-reduced-motion` always.
   feature panels; **count-up** stat numerals; and slow ambient pulses
   (radar/orbit rings). Each is small and purposeful — never a carousel of effects.
 - **Wrap all non-essential motion in `@media (prefers-reduced-motion: reduce)`.**
+
+### Advanced motion — GSAP + scroll-linked (Fable's high-end register)
+For premium / "award-winning" / 3D-cinematic builds, Fable reaches for **GSAP**
+(pinned `gsap@^3.13.0`) and **scroll-linked** animation, not just CSS transitions.
+Concrete techniques observed verbatim in Fable's own build reasoning:
+
+- **Scroll progress is lerped, not raw.** A gesture controller writes a raw
+  `scrollProgress` (wheel sensitivity ~`0.0006`, touch ~`0.0015`, clamped `[0,1]`);
+  a `requestAnimationFrame` loop eases it toward a `lerpedScrollProgress` at
+  factor **`0.08`**. Everything downstream drives off the *lerped* value, so motion
+  feels weighted, never jumpy.
+- **Signature easings:** `power1.out` for text/element reveals, `power2.out`
+  (~`1.2s`) for parallax. e.g. `gsap.to(timeline, { progress, duration: 0.6, ease: "power1.out" })`.
+- **Split-text scroll reveal:** split a headline into lines → words → chars as
+  nested `inline-block` spans, **keep an `aria-label` with the full text** for
+  screen readers, build a *paused* GSAP timeline, and scrub it from scroll progress.
+- **Cursor-spotlight reveal:** track the mouse, smooth it via a rAF lerp (factor
+  **`0.1`**, radius ~`260px`), and paint a **radial-gradient mask**
+  (`maskImage`/`-webkit-mask-image`) so a second image shows only inside a soft
+  circle that *trails* the cursor. Mask stops, e.g.:
+  `rgba(255,255,255,1) 0 → 0.4:1 → 0.6:.75 → 0.75:.4 → 0.88:.12 → 1:0`.
+- **Mouse parallax:** translate layers by `-mouseX*40 / -mouseY*40`.
+- **Scroll-scrubbed video** (`VideoScrubber`): drive a `<video>` `currentTime`
+  from scroll progress for a cinematic "video-as-you-scroll" hero.
+- The rule still holds: every effect is **purposeful and weighted**, never a pile
+  of decorations — and all of it respects `prefers-reduced-motion`.
 
 ---
 

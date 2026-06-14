@@ -36,7 +36,7 @@ Soft, large-blur, low-opacity, negative spread (`-28px/-30px`) — grounded card
 Encodes brand voice: 16px friendly / 10px techy / 0px+2px-borders rigid. Pills 999, cards 14–16, chips 6–8, micro 3–5. No off-scale radii.
 
 ## Animation
-Motion must earn its keep; CSS over video; `prefers-reduced-motion` always. Easings: `cubic-bezier(0.16,1,0.3,1)` entrances, `cubic-bezier(0.34,1.56,0.64,1)` for one delight beat. Durations: micro .12–.2s / entrance .25–.3s / reveal .6–.7s.
+Motion must earn its keep; CSS over video; `prefers-reduced-motion` always. Easings: `cubic-bezier(0.16,1,0.3,1)` entrances, `cubic-bezier(0.34,1.56,0.64,1)` for one delight beat. Durations: micro .12–.2s / entrance .25–.3s / reveal .6–.7s. High-end register: GSAP (`^3.13.0`) + scroll-linked — lerp scroll progress (~.08, never raw), `power1.out`/`power2.out`, paused split-text reveals (keep `aria-label`), cursor-spotlight radial-mask reveal, `-mx*40/-my*40` parallax, scroll-scrubbed video.
 
 ## Hard NO
 Tailwind defaults · default fonts · pure-white bg · gradient meshes · neon · particles · "AI sparkle" · decorative glassmorphism · emoji/icon-spam · color-only signaling · off-scale values · video where CSS suffices · shipping unrun.

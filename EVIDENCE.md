@@ -16,7 +16,7 @@ locally-observable evidence**, then cross-checked against each other:
   color tokens, shadow strings, easings, radius scales — come from reading
   actual shipped markup, not from imagination.
 - **Stream B — recorded build sessions.** Multiple publicly-posted videos
-  (5+ creators) of people building websites with the model, in several of which
+  (8+ creators) of people building websites with the model, in several of which
   the model's design reasoning appears on screen verbatim — including
   self-critique, contrast measurements, and exact color values. Across ~15
   distinct sites observed this way, several patterns recur independently of any
@@ -26,7 +26,14 @@ locally-observable evidence**, then cross-checked against each other:
   / specimen labels**; **subtle scroll parallax + line-draw animations**; and
   **brand-adaptive single accents** (green/teal/blue/terracotta/navy-orange),
   the constant being "one accent + restraint," not a fixed hue. Cross-creator
-  repetition is what raised these from "one demo" to "signal."
+  repetition is what raised these from "one demo" to "signal." Later sessions
+  surfaced Fable's high-end *motion* stack verbatim on screen — **GSAP**
+  (`gsap@^3.13.0`), scroll-progress lerping (factor `0.08`), `power1.out` /
+  `power2.out` easings, paused split-text scroll reveals (with `aria-label`
+  fallbacks), a cursor-spotlight radial-mask reveal, and `-mx*40/-my*40` mouse
+  parallax — plus a premium **neon-on-near-black** palette (`#FF005E` on
+  `#11010a`), **iridescent color-shifting** hero gradients, and AI-generated
+  cinematic hero art (via an image MCP). These fed §4 (color) and §8 (animation).
 
 The two streams independently agree on the core signals (editorial type pairings,
 measured/value-separated color, vision-based self-correction against a live
