@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:760px;overflow:hidden}
+  body{
+    background:
+      radial-gradient(100% 80% at 15% 5%, rgba(168,90,34,.10) 0%, transparent 45%),
+      radial-gradient(100% 80% at 90% 95%, rgba(13,148,136,.09) 0%, transparent 45%),
+      #f5f0e6;
+    font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:30px;padding:48px;
+  }
+  /* ---- terminal (left) ---- */
+  .term{
+    width:560px;height:600px;background:#15171c;border-radius:16px;overflow:hidden;
+    box-shadow:0 1px 0 rgba(26,24,21,.05),0 30px 70px -28px rgba(22,26,30,.55);
+    display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.06);
+  }
+  .bar{height:38px;background:#1d2026;display:flex;align-items:center;gap:8px;padding:0 16px;flex-shrink:0;}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .r{background:#ff5f57}.y{background:#febc2e}.g{background:#28c840}
+  .bartitle{margin-left:10px;font:600 12px/1 'Geist Mono',monospace;color:#7b8290;letter-spacing:.04em}
+  .body{padding:20px 22px;font:13px/1.7 'Geist Mono',monospace;color:#d5dae3;flex:1;overflow:hidden}
+  .l{opacity:0;white-space:pre-wrap}
+  .prompt{color:#5ed6a0}.path{color:#7aa2f7}.ok{color:#28c840}.dim{color:#6b7280}.acc{color:#f0883e}.cmd{color:#fff}
+  /* ---- result card (right) ---- */
+  .result{
+    width:520px;height:600px;border-radius:16px;overflow:hidden;position:relative;
+    background:#16201c;box-shadow:0 30px 70px -28px rgba(22,32,28,.5);
+    opacity:0;transform:translateY(14px);display:flex;flex-direction:column;justify-content:center;padding:52px 46px;
+    border:1px solid rgba(255,255,255,.05);
+  }
+  .result .eb{font:600 11px/1 'Geist Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:#34d399;margin-bottom:20px}
+  .result h1{font:400 52px/1.05 'Instrument Serif',serif;color:#f5f0e6;letter-spacing:-.01em;margin-bottom:18px}
+  .result h1 em{font-style:italic;color:#34d399}
+  .result p{font:16px/1.55 'Inter',sans-serif;color:rgba(245,240,230,.7);margin-bottom:28px;max-width:380px}
+  .result .btns{display:flex;gap:12px}
+  .result .pill{background:#34d399;color:#06281e;font:600 14px/1 'Inter';padding:13px 24px;border-radius:999px}
+  .result .ghost{border:1.5px solid rgba(245,240,230,.4);color:#f5f0e6;font:600 14px/1 'Inter';padding:12px 22px;border-radius:999px}
+  .result .badge{position:absolute;top:22px;right:22px;font:600 10px/1 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#34d399;border:1px solid rgba(52,211,153,.35);padding:6px 11px;border-radius:999px}
+  .arrow{position:absolute;left:585px;top:355px;font:700 30px/1 'Inter';color:#a85a22;opacity:0}
+
+  /* ---- timeline (≈9s) ---- */
+  @keyframes show{to{opacity:1}}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .l1{animation:show .01s linear .3s forwards}
+  .l2{animation:show .01s linear 1.0s forwards}
+  .l3{animation:show .01s linear 1.5s forwards}
+  .l4{animation:show .01s linear 2.0s forwards}
+  .l5{animation:show .01s linear 2.5s forwards}
+  .l6{animation:show .01s linear 3.0s forwards}
+  .l7{animation:show .01s linear 3.7s forwards}
+  .l8{animation:show .01s linear 4.6s forwards}
+  .l9{animation:show .01s linear 5.2s forwards}
+  .l10{animation:show .01s linear 5.7s forwards}
+  .arrow{animation:show .4s ease 6.2s forwards}
+  .result{animation:rise .7s cubic-bezier(.16,1,.3,1) 6.5s forwards}
+  .cursor{display:inline-block;width:8px;height:15px;background:#5ed6a0;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+</style></head>
+<body>
+  <div class="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="bartitle">zsh — fable-design-system</span></div>
+    <div class="body">
+<div class="l l1"><span class="prompt">$</span> <span class="cmd">curl -fsSL https://fable…/install.sh | bash</span></div>
+<div class="l l2"><span class="acc">🎨 Fable Design System — installer</span></div>
+<div class="l l3"><span class="dim">Downloading the design system…</span></div>
+<div class="l l4">  <span class="ok">✓</span> persona + evidence</div>
+<div class="l l5"><span class="dim">Installing into detected agents…</span></div>
+<div class="l l6">  <span class="ok">✓</span> Claude <span class="dim">→ ~/.claude/skills</span></div>
+<div class="l l7">  <span class="ok">✓</span> Codex <span class="dim">→ ~/.codex/skills</span></div>
+<div class="l l8">  <span class="ok">✓</span> Cursor &amp; Antigravity <span class="dim">→ detected</span></div>
+<div class="l l9"><span class="acc">Done. 🎉</span> <span class="dim">Restart your agent.</span></div>
+<div class="l l10" style="margin-top:14px"><span class="prompt">›</span> <span class="cmd">build me a landing page hero</span><span class="cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <div class="result">
+    <div class="badge">Fable output</div>
+    <div class="eb">— Designed, not defaulted</div>
+    <h1>Ship work people<br><em>screenshot</em>.</h1>
+    <p>Real type. Warm palette. Motion that earns its keep. Your agent, with an award-winning eye.</p>
+    <div class="btns"><span class="pill">Get started →</span><span class="ghost">See how</span></div>
+  </div>
+</body></html>
