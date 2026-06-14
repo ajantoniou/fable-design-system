@@ -409,6 +409,50 @@ verbatim in Fable's own build reasoning:
 
 ---
 
+## 8b. Game & 3D-world art direction (same principles, 3D surface)
+
+> Scope note: this section is **deliberately short**. Fable's *design* principles
+> transfer cleanly to game/3D work, and that's what's captured here. The deep 3D
+> *rendering engineering* (cascaded shadows, volumetrics, impostors, meshing) is a
+> separate engineering discipline, not design taste — reference it, don't reteach
+> it. Evidence is strong on **world cohesion / environment art**, thinner on game
+> "juice"/feel (see `EVIDENCE.md`).
+
+**The core persona principles apply unchanged — just to a 3D surface:**
+
+- **Declare the art direction as a brief, not a how-to.** The standout Fable
+  example (the open-source `Braffolk/fable5-world-demo`, "LAAS") was directed by a
+  single doc that set **a vision bar** ("UE5-class reference frames"), **hard
+  floors** (triangle budgets, world size, required systems), and **a banlist of
+  failure modes** — *"black shadows, cloned trees, fog as cover"* — and
+  **deliberately did not say how to build any of it.** This is exactly the web
+  method (declare palette/type/grid/tokens first), expressed for 3D: *vision
+  reference + hard floors + explicit banned outcomes.*
+- **Verify with automated vision, not vibes.** Fable boots the world headless,
+  **screenshots it, samples pixels, diffs frames against baselines, profiles GPU
+  passes, and writes regression probes** for bugs it finds. Taste becomes a
+  *testable rule* — e.g. the **"no-black-shadows rule enforced by automated pixel
+  sampling."** Same loop as numeric WCAG contrast checks on the web.
+- **"Understanding of context" = per-instance uniqueness + cohesion.** Real
+  environment detail means **no two trees share a mesh** (procedural species with
+  bark/leaf/foliage variation), understory with decay states, and a *cohesive*
+  lighting/atmosphere/wind/water stack so the world reads as one place — not a
+  field of cloned props. The design lesson: **detail must vary and cohere**, never
+  copy-paste.
+- **Restraint + narrative still rule.** Reject *"fog as cover"* (hiding weak
+  rendering) the way the web register rejects "AI sparkle." Lead from a narrative
+  (e.g. a world themed on a poem), not from effects.
+- **Game UI / HUD:** the web UI principles carry over — one accent, mono labels for
+  readouts, hierarchy "readable under pressure," restraint. Fable one-shots
+  cohesive HUDs/menus/mode-select without per-element instruction.
+
+**Honest limits:** game *juice/feel* (screenshake, hit-stop, game-UI easing) is
+under-documented for Fable and is its weaker, least-autonomous axis — the "feel"
+tuning in LAAS (wind amplitude, camera bob) needed **human** judgment. Don't
+invent juice specifics; treat feel as a human-in-the-loop pass.
+
+---
+
 ## 9. Hard "don't" list (Fable refuses these on sight)
 
 - Generic Tailwind defaults; default font stacks (`Inter`-only, Roboto, Arial, system-ui as the face).

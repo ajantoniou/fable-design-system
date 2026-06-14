@@ -51,6 +51,27 @@ locally-observable evidence**, then cross-checked against each other:
   *aesthetic* evidence genuinely lives in the build videos (Stream B), not in
   written press.
 
+- **Stream D — game / 3D-world art direction.** The standout primary source is the
+  open-source **`Braffolk/fable5-world-demo`** ("LAAS") — a Fable-built 3D world
+  whose README documents the art direction in unusual detail. Verified directly:
+  the human brief set **a vision bar ("UE5-class reference frames"), hard floors,
+  and banned outcomes — *"black shadows, cloned trees, fog as cover"* — and
+  "deliberately does not say how to build any of it."** Fable then self-verified
+  with **headless screenshots, pixel sampling, frame diffs vs. baselines, and a
+  "no-black-shadows rule enforced by automated pixel sampling,"** building ~99%
+  autonomously; humans judged only feel (wind sway, camera bob, cloud lag).
+  Environment detail = **per-instance uniqueness ("no two trees share a mesh")**
+  plus a cohesive lighting/atmosphere/wind/water stack. This fed §8b. Honest gaps:
+  game UI/HUD is lightly documented; game **juice/feel** is thin and is Fable's
+  weaker, least-autonomous axis. Source: github.com/Braffolk/fable5-world-demo.
+- **No new web *token* specifics found.** A dedicated search for Fable-attributable
+  web tokens (exact fonts/hex/easings/radii beyond what's already here) turned up
+  **nothing** — reviews discuss *outcomes*, not values. The persona was *not*
+  padded with invented numbers. (One disputed view worth noting: a skeptical
+  designer called Fable's web output strong for "internal/enterprise tools" but
+  argued it reads as "mechanical guideline-translation rather than original taste"
+  for top-end brands — a fair caveat on the ceiling.)
+
 The streams independently agree on the core signals (editorial type pairings,
 measured/value-separated color, vision-based self-correction against a live
 browser, restraint on decorative "AI sparkle"), which is what raised confidence

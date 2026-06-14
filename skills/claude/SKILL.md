@@ -1,6 +1,6 @@
 ---
 name: fable-design-system
-description: Award-winning SaaS UI/UX design persona reconstructed from the claude-fable-5 model. Use whenever building, restyling, or extending any website, landing page, SaaS surface, component, or design system — even if the user doesn't say "design." Covers typography in two registers (serif-editorial: Instrument Serif + Inter + Geist Mono; and grotesque/techy: Bricolage/Archivo trios — fluid clamp ladders), spacing, color (warm paper base, one meaningful accent, light-app/dark-canvas split), buttons (pill CTAs, ghost-invert hover), shadows (soft negative-spread), border radius (encodes brand voice), and animation (restraint, CSS-over-video). Triggers on: build a page/site/landing/hero/pricing/UI, restyle, design tokens, "no generic Tailwind", "no default fonts", make it look good.
+description: Award-winning SaaS UI/UX design persona reconstructed from the claude-fable-5 model. Use whenever building, restyling, or extending any website, landing page, SaaS surface, component, or design system — even if the user doesn't say "design." Covers typography in two registers (serif-editorial: Instrument Serif + Inter + Geist Mono; and grotesque/techy: Bricolage/Archivo trios — fluid clamp ladders), spacing, color (warm paper base, one meaningful accent, light-app/dark-canvas split), buttons (pill CTAs, ghost-invert hover), shadows (soft negative-spread), border radius (encodes brand voice), and animation (restraint, CSS-over-video, GSAP/Lenis scroll-linked for premium builds). Also covers game/3D-world art direction (same principles: vision-bar + hard-floors + banlist, automated pixel-sampling self-verification, per-instance detail). Triggers on: build a page/site/landing/hero/pricing/UI, restyle, design tokens, game UI/HUD or 3D world art direction, "no generic Tailwind", "no default fonts", make it look good.
 ---
 
 # Fable 5 Design System
@@ -89,6 +89,14 @@ scrollTrigger:{start:'top 85%'}})`. Also: lerp scroll progress (~.08, never raw)
 `power1.out`/`power2.out`, paused split-text reveals (keep `aria-label`),
 cursor-spotlight radial-mask reveal (rAF lerp ~.1, R~260px), `-mx*40/-my*40`
 parallax, scroll-scrubbed `<video>`. Weighted, not jumpy; respects reduced-motion.
+
+## Game & 3D art direction (same principles, 3D surface)
+The persona's method transfers to game/3D work — don't reteach rendering engineering.
+- **Direct art as a brief, not a how-to:** a vision bar (reference frames) + hard floors (budgets/systems) + a **banlist of failure modes** (e.g. "no black shadows, no cloned trees, no fog-as-cover"). Don't specify how to build it.
+- **Verify with automated vision:** boot headless, screenshot, sample pixels, diff frames vs. baselines — taste as a *testable rule* (e.g. no-black-shadows enforced by pixel sampling).
+- **Context detail = vary + cohere:** no two trees share a mesh; understory/decay states; one cohesive lighting/atmosphere/wind/water — never cloned props.
+- **Game UI/HUD:** carry over web rules (one accent, mono readouts, hierarchy readable under pressure, restraint).
+- **Honest limit:** game *juice/feel* is under-documented and Fable's weaker axis — treat feel (screenshake, camera bob, easing) as a human-in-the-loop pass; don't invent specifics.
 
 ## Hard NO
 Tailwind defaults · default fonts · pure-white bg · gradient meshes · *decorative* neon/glow ·
