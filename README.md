@@ -2,22 +2,30 @@
 
 # 🎨 Fable Design System
 
-### Bring Fable-style design taste to any AI coding agent.
+### Free drop-in design skill for Claude, Cursor, Codex, and Antigravity.
 
-**A drop-in design persona for Claude, Opus 4.8, Codex, Cursor, Gemini & Antigravity — so your AI stops shipping generic Tailwind defaults and starts shipping designs people screenshot.**
+**Bring Fable-style design taste to any AI coding agent — so it stops shipping generic Tailwind defaults and starts shipping designs people screenshot.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg)](./LICENSE)
-[![For: Claude · Codex · Cursor · Gemini](https://img.shields.io/badge/for-Claude%20·%20Codex%20·%20Cursor%20·%20Gemini-0d9488.svg)](#install)
+[![For: Claude · Cursor · Codex · Antigravity](https://img.shields.io/badge/for-Claude%20·%20Cursor%20·%20Codex%20·%20Antigravity-0d9488.svg)](#install)
 [![Price: Free](https://img.shields.io/badge/price-free-f97362.svg)](#)
-
-*Built by **[Dr. Antoniou](https://www.healthbrew.app)** — physician & builder.*
-*Offered free for creatives & content creators by **[UploadCheck](https://www.uploadcheck.app)**.*
 
 <br>
 
+<table>
+<tr>
+<td align="center"><b>❌ BEFORE — default AI UI</b></td>
+<td align="center"><b>✅ AFTER — Fable Design Skill</b></td>
+</tr>
+</table>
+
 ![Before and after: the same landing page built by a default AI agent vs. with the Fable Design System](assets/compare-healthbrew.png)
 
-<sub><b>Same brand. Same copy.</b> Left: what an AI agent ships by default. Right: the same page with the Fable Design System installed.</sub>
+<sub><b>Same brand. Same copy. Same prompt.</b> Left: what an AI coding agent ships by default. Right: the identical page with the Fable Design System installed.</sub>
+
+<br><br>
+
+> **For builders who use Claude, Cursor, Codex, or Antigravity to ship websites — and want better UI without hiring a designer.**
 
 </div>
 
