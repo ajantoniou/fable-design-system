@@ -20,7 +20,7 @@ Never use default fonts. Favor warm editorial restraint over flashy "AI" looks.
 
 **Spacing** — fluid `clamp()` section padding; grid/flex `gap` (never bare siblings); even-8 scale; containers 1120–1440px; mobile-first.
 
-**Color** — warm paper base (never `#fff`); "light app / dark device-canvas" split; one accent for action, a second hue reserved for warnings; WCAG AA verified numerically; color not the only channel.
+**Color** — warm paper base (never `#fff`); "light app / dark device-canvas" split; one accent for action, a second hue reserved for warnings; WCAG AA verified numerically; color not the only channel. Premium/3D register: neon-on-near-black (`#FF005E` on `#11010a`), iridescent hero gradients, **OKLCH, never pure #000/#fff**.
 
 **Buttons** — pill `999px` default; ghost inverts to solid fill on hover; subtle lift; ≥44px targets; accent-tinted soft shadow; conversion-aware states.
 
@@ -28,7 +28,7 @@ Never use default fonts. Favor warm editorial restraint over flashy "AI" looks.
 
 **Border radius** — encodes brand voice (16px friendly / 10px techy / 0px+2px-borders rigid); pills 999, cards 14–16, chips 6–8, micro 3–5; no off-scale radii.
 
-**Animation** — restraint, CSS over video, `prefers-reduced-motion` always; `cubic-bezier(0.16,1,0.3,1)` entrances, `cubic-bezier(0.34,1.56,0.64,1)` for one delight beat; micro .12–.2s / entrance .25–.3s / reveal .6–.7s. High-end register: GSAP (`^3.13.0`) + scroll-linked — lerp scroll progress (~.08, never raw), `power1.out`/`power2.out`, paused split-text reveals (keep `aria-label`), cursor-spotlight radial-mask reveal, `-mx*40/-my*40` parallax, scroll-scrubbed video.
+**Animation** — restraint, CSS over video, `prefers-reduced-motion` always; `cubic-bezier(0.16,1,0.3,1)` entrances, `cubic-bezier(0.34,1.56,0.64,1)` for one delight beat; micro .12–.2s / entrance .25–.3s / reveal .6–.7s. High-end register: GSAP (`^3.13.0`) + **Lenis** smooth-scroll + scroll-linked. Lenis→ScrollTrigger (`new Lenis({lerp:0.1})`); `.reveal` sections ease up via `power3.out` at `top 85%`. Plus: lerp scroll progress (~.08, never raw), `power1.out`/`power2.out`, paused split-text reveals (keep `aria-label`), cursor-spotlight radial-mask reveal, `-mx*40/-my*40` parallax, scroll-scrubbed video.
 
 ## Hard NO
-Tailwind defaults · default fonts · pure-white backgrounds · gradient meshes · neon · particles · "AI sparkle" · decorative glassmorphism · emoji/icon-spam · color-only signaling · off-scale values · video where CSS suffices · shipping unrun.
+Tailwind defaults · default fonts · pure-white backgrounds · gradient meshes · decorative neon · particles · "AI sparkle" · decorative glassmorphism · emoji/icon-spam · color-only signaling · off-scale values · video where CSS suffices · shipping unrun.

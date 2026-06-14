@@ -52,6 +52,35 @@ This is the behavioral spine. The aesthetics below are downstream of *how* you w
    realized* direction mockups (different palette + type + radius personality),
    pick one, and say why.
 
+### The "$10k site" workflow — start from one thesis line, upgrade one file
+Fable's own articulated method for premium builds ("forged, not templated"):
+
+1. **One thesis line carries everything.** Before any design, distill the brand to
+   a *single sentence* — "short, specific, no filler" — via ~4 questions: *what is
+   it in one line · who's it for and what should they feel · the one thing to
+   remember · is there an AI render tool for hero art, or stock?* Every later
+   design decision is **tested against that line.**
+2. **Structure before style.** Ship **version one as plain, unstyled, readable
+   type** — brand name + thesis line + a two-sentence lede in a single
+   `index.html` — then **upgrade that same file** prompt by prompt. Don't style a
+   page whose message isn't settled.
+3. **"A scene picks the colors, not the category."** Derive the palette from the
+   intended *mood/hero scene*, not from the industry. (A "coffee brand" isn't
+   brown-by-default — a late-night-focus scene might be ink + warm beige + one ember.)
+4. **Design choices serve a narrative, not decoration.** e.g. a car revealed *out
+   of darkness* as you scroll because "you're getting closer to a dream car," not
+   spun like a spec demo. Ask what the motion/reveal *means* before adding it.
+5. **One product photo is enough to start.** Over-asking and over-collecting is how
+   projects stall.
+
+### What makes Fable's eye different (the judgment layer)
+- It **catches design holes a lesser model misses** and needs far less nudging —
+  it reads *intent*, then fills missing color/type/spacing/interactivity coherently.
+- It **self-corrects with vision** — checks its rendered output against the goal,
+  not just the code.
+- **Information hierarchy under pressure:** surface the risky/important action
+  clearly; don't hide uncertainty; make dashboards/flows "readable under pressure."
+
 ---
 
 ## 2. Typography — editorial pairings, never defaults
@@ -184,6 +213,12 @@ ink). A clean geometric "spark," never a clip-art icon.
   used for the headline word, CTA, and glows. Still one accent + restraint — just
   loud instead of warm. Note the body bg is often even darker than the visible
   viewport color (a deliberate value-separation trick).
+- **OKLCH, and no pure black or white.** On premium builds Fable works in
+  **OKLCH** color (perceptually uniform — accents stay vivid and lightness ramps
+  read evenly) and deliberately avoids `#000` / `#fff`: "near-black" and
+  "near-white" instead, so surfaces feel lit, not flat. *"A scene picks the
+  colors, not the category"* — derive the palette from the intended mood/hero
+  scene, not the industry default.
 - **Iridescent color-shifting gradients** are Fable's signature "wow" surface for
   3D/hero objects — e.g. *"color-shifting hyperpaint that flows from electric
   magenta → violet → deep cyan."* Used on a hero render or accent object, never
@@ -226,8 +261,9 @@ move, warm palette.
 
 **Gradients: sparing and soft, or banned.** When used, low-opacity ambient
 washes only — `linear-gradient(160deg, rgba(217,236,255,.7), transparent 34%)`.
-**Anti-patterns Fable explicitly refuses:** hero gradient meshes, neon accents,
-animated particles, "AI sparkle," glassmorphism-as-decoration.
+**Anti-patterns Fable explicitly refuses:** hero gradient meshes, *decorative*
+neon (random glowing borders as "AI sparkle" — distinct from the deliberate
+single neon-accent register in §4), animated particles, glassmorphism-as-decoration.
 
 **Accessibility is a color *input*, checked numerically:**
 - Verify WCAG AA contrast (4.5:1 normal text, 3:1 large). Fable caught
@@ -334,11 +370,22 @@ motion only. CSS over video. `prefers-reduced-motion` always.
   (radar/orbit rings). Each is small and purposeful — never a carousel of effects.
 - **Wrap all non-essential motion in `@media (prefers-reduced-motion: reduce)`.**
 
-### Advanced motion — GSAP + scroll-linked (Fable's high-end register)
+### Advanced motion — GSAP + Lenis + scroll-linked (Fable's high-end register)
 For premium / "award-winning" / 3D-cinematic builds, Fable reaches for **GSAP**
-(pinned `gsap@^3.13.0`) and **scroll-linked** animation, not just CSS transitions.
-Concrete techniques observed verbatim in Fable's own build reasoning:
+(pinned `gsap@^3.13.0`; sometimes `3.12.5` + ScrollTrigger from a CDN) and
+**Lenis** smooth-scroll, not just CSS transitions. Concrete techniques observed
+verbatim in Fable's own build reasoning:
 
+- **Lenis inertia smooth-scroll wired into GSAP ScrollTrigger.** Canonical setup:
+  ```js
+  const lenis = new Lenis({ lerp: 0.1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  ```
+- **`.reveal` scroll-in pattern** (the workhorse): every section eases up as it
+  enters the viewport — `gsap.to('.reveal', { opacity: 1, y: 0, duration: 1,
+  ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } })`.
 - **Scroll progress is lerped, not raw.** A gesture controller writes a raw
   `scrollProgress` (wheel sensitivity ~`0.0006`, touch ~`0.0015`, clamped `[0,1]`);
   a `requestAnimationFrame` loop eases it toward a `lerpedScrollProgress` at
@@ -366,7 +413,7 @@ Concrete techniques observed verbatim in Fable's own build reasoning:
 
 - Generic Tailwind defaults; default font stacks (`Inter`-only, Roboto, Arial, system-ui as the face).
 - Pure `#ffffff` page backgrounds (use warm paper).
-- Hero gradient meshes, neon accents, animated particles, "AI sparkle," decorative glassmorphism.
+- Hero gradient meshes, *decorative* neon / "AI sparkle" glow (not the deliberate single neon-accent register), animated particles, decorative glassmorphism.
 - Decorative emoji and icon-spam; three-column circle-icon "features" filler.
 - Color as the *only* signal channel.
 - Off-scale one-off radii / spacing values.

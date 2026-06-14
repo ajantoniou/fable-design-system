@@ -20,6 +20,13 @@ repo root in the source). The condensed operating rules:
 4. **Self-critique by measurement** — contrast ratios, value separation, scroll position — and fix root causes, not symptoms.
 5. For greenfield: build 2–3 fully-realized direction mockups, then commit and say why.
 
+## Design philosophy (the "$10k site" way)
+- **One thesis line carries everything.** Distill the brand to a single short, specific sentence (via ~4 questions: what is it / who for + what feeling / one thing to remember / hero-art source). Test every design decision against it.
+- **Structure before style:** ship plain readable type first (brand + thesis + lede in one `index.html`), then upgrade the same file. Don't style an unsettled message.
+- **"A scene picks the colors, not the category"** — palette from the intended mood/hero scene, not the industry. Premium builds use **OKLCH**, never pure `#000`/`#fff`.
+- **Motion/reveals serve a narrative, not decoration** — ask what a reveal *means* before adding it.
+- Fable's edge: catches design holes others miss, needs little nudging, self-corrects with vision, keeps hierarchy "readable under pressure."
+
 ## Typography
 Two registers — match to the brand, never default to one. Never a default-only
 stack.
@@ -50,7 +57,9 @@ Warm paper base, never `#fff` (`#faf9f6`/`#FAF6EF`/`#F4F6F8`); pure white only f
 elevated cards. **"Light app, dark device-canvas" split** — warm page, product
 moments on dark slate; not global dark mode. One accent = action; a second hue
 reserved strictly for warnings/flags ("color as meaning, not decoration"). WCAG
-AA verified numerically; color never the only channel.
+AA verified numerically; color never the only channel. Premium/3D register:
+neon-on-near-black (`#FF005E` on `#11010a`), iridescent color-shifting hero
+gradients; **OKLCH, never pure #000/#fff**.
 
 ## Buttons
 Pill `999px` default CTA; ghost = `1.5px solid ink` inverting to ink-fill on
@@ -72,14 +81,17 @@ Motion must **earn its keep**; CSS over video; `prefers-reduced-motion` always.
 Easings: `cubic-bezier(0.16,1,0.3,1)` entrances; `cubic-bezier(0.34,1.56,0.64,1)`
 for the one delight beat. Durations: micro .12–.2s, entrance .25–.3s, reveal
 .6–.7s, ambient 1.8–2s. Backdrop blur (8–14px) for functional glass only.
-**High-end register (premium/3D/award-winning):** GSAP (`^3.13.0`) + scroll-linked
-motion — lerp scroll progress (factor ~.08, never raw), `power1.out`/`power2.out`
-easings, paused split-text scroll reveals (keep `aria-label`), cursor-spotlight
-radial-mask reveal (rAF lerp ~.1, R~260px), `-mx*40/-my*40` mouse parallax,
-scroll-scrubbed `<video>`. Weighted, not jumpy; still respects reduced-motion.
+**High-end register (premium/3D/award-winning):** GSAP (`^3.13.0`) + **Lenis**
+smooth-scroll + scroll-linked motion. Lenis→ScrollTrigger wired
+(`new Lenis({lerp:0.1})`, `gsap.ticker.add(t=>lenis.raf(t*1000))`); `.reveal`
+sections ease up via `gsap.to(..., {opacity:1, y:0, duration:1, ease:'power3.out',
+scrollTrigger:{start:'top 85%'}})`. Also: lerp scroll progress (~.08, never raw),
+`power1.out`/`power2.out`, paused split-text reveals (keep `aria-label`),
+cursor-spotlight radial-mask reveal (rAF lerp ~.1, R~260px), `-mx*40/-my*40`
+parallax, scroll-scrubbed `<video>`. Weighted, not jumpy; respects reduced-motion.
 
 ## Hard NO
-Tailwind defaults · default fonts · pure-white bg · gradient meshes · neon ·
+Tailwind defaults · default fonts · pure-white bg · gradient meshes · *decorative* neon/glow ·
 particles · "AI sparkle" · decorative glassmorphism · emoji/icon-spam ·
 color-only signaling · off-scale values · video where CSS suffices · shipping
 without running it.

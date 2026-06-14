@@ -34,11 +34,27 @@ locally-observable evidence**, then cross-checked against each other:
   parallax — plus a premium **neon-on-near-black** palette (`#FF005E` on
   `#11010a`), **iridescent color-shifting** hero gradients, and AI-generated
   cinematic hero art (via an image MCP). These fed §4 (color) and §8 (animation).
+  The most design-articulate sessions ("Claude Code Club" lessons) also stated
+  Fable's *philosophy* verbatim: **one thesis line tested against every decision**,
+  **structure-before-style on a single upgraded `index.html`**, *"a scene picks
+  the colors, not the category,"* **OKLCH with no pure `#000`/`#fff`**, **Lenis**
+  smooth-scroll wired to GSAP ScrollTrigger with a `.reveal` / `power3.out` /
+  `top 85%` pattern, and motion that **serves a narrative, not decoration.**
 
-The two streams independently agree on the core signals (editorial type pairings,
+- **Stream C — expert written reviews (checked, mostly thin).** Public reviews of
+  Fable (Simon Willison, Anthropic's announcement, others) were read for design
+  specifics. Finding worth recording: they focus on *functional* capability
+  (benchmarks, vision-based rebuilding, long-horizon coding) and say little about
+  *aesthetics*. The few principle-level takeaways used here: Fable "catches design
+  holes a lesser model misses," needs far less nudging (reads intent), and
+  **self-corrects with vision** against the goal. Conclusion: the concrete
+  *aesthetic* evidence genuinely lives in the build videos (Stream B), not in
+  written press.
+
+The streams independently agree on the core signals (editorial type pairings,
 measured/value-separated color, vision-based self-correction against a live
-browser, restraint on "AI sparkle"), which is what raised confidence enough to
-publish.
+browser, restraint on decorative "AI sparkle"), which is what raised confidence
+enough to publish.
 
 ## Representative reasoning (illustrative, paraphrased from observed output)
 

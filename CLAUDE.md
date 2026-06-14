@@ -47,4 +47,4 @@ defaults. Do **not** use default fonts. Warm editorial restraint over flashy "AI
 - **High-end register (premium/3D/award-winning):** GSAP (`^3.13.0`) + scroll-linked motion — lerp scroll progress (factor ~`.08`, never raw), `power1.out`/`power2.out` easings, paused split-text scroll reveals (keep `aria-label`), cursor-spotlight radial-mask reveal (rAF lerp ~`.1`, R~`260px`), `-mx*40/-my*40` mouse parallax, scroll-scrubbed `<video>`. Weighted, not jumpy; still respects reduced-motion.
 
 ## Hard NO
-Tailwind defaults · default fonts · pure-white bg · gradient meshes · neon · particles · "AI sparkle" · decorative glassmorphism · emoji/icon-spam · color-only signaling · off-scale values · video where CSS would do · shipping without running it.
+Tailwind defaults · default fonts · pure-white bg · gradient meshes · *decorative* neon/glow (not the deliberate single neon-accent register) · particles · "AI sparkle" · decorative glassmorphism · emoji/icon-spam · color-only signaling · off-scale values · video where CSS would do · shipping without running it.
