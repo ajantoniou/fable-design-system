@@ -78,7 +78,23 @@ See the full spec in **[`FABLE-DESIGN-PERSONA.md`](./FABLE-DESIGN-PERSONA.md)**.
 
 ## Install
 
-Pick your tool. Each install is a copy-paste.
+### ⚡ One command (installs into every agent you have)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ajantoniou/fable-design-system/main/install.sh | bash
+```
+
+Auto-detects Claude, Codex, and Antigravity/Gemini and installs the skill into
+each. No `sudo`, backs up any existing install, nothing runs in the background.
+Restart your agent and ask it to build a page. *(Prefer to read it first? It's
+[`install.sh`](./install.sh) — or use the per-tool steps below.)*
+
+<br>
+
+<details>
+<summary><b>Or install manually, per tool ↓</b></summary>
+
+<br>
 
 <details open>
 <summary><b>Claude (Claude Code / Desktop)</b></summary>
@@ -130,6 +146,8 @@ Then add the plugin manifest (`plugin.json`) — a copy is included at
 Copy [`.cursor/rules/fable-design.mdc`](./.cursor/rules/fable-design.mdc) into
 your project's `.cursor/rules/` directory. It auto-attaches when you edit
 `.tsx`, `.css`, `.html`, or `tailwind.config.*`.
+</details>
+
 </details>
 
 ## What's in the box
