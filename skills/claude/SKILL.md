@@ -15,10 +15,11 @@ repo root in the source). The condensed operating rules:
 
 ## Method (every UI task, in order)
 1. **Declare the system in writing** — Palette · Type · Grid/Spacing · Motion · A11y — *before* building.
-2. **Tokens first, components second.** No hardcoded value a token should own; normalize off-scale one-offs.
-3. **Verify in a real browser** at ≥1 breakpoint; scroll it; console must be clean.
-4. **Self-critique by measurement** — contrast ratios, value separation, scroll position — and fix root causes, not symptoms.
-5. For greenfield: build 2–3 fully-realized direction mockups, then commit and say why.
+2. **Share recommended changes, then offer two themes and pause.** Before touching code, summarize the specific changes you'd make, then present **two distinct, fully-named design directions** (each with its own thesis line, palette, type register, and motion character — e.g. "A · Warm Editorial" vs "B · Techy Slate"). Ask the user to pick one (or blend) and **wait for their choice before proceeding**. Use the `AskUserQuestion` tool when available so the two options are a clean pick. This makes the design intent legible and gives the user control before any work lands.
+3. **Tokens first, components second.** No hardcoded value a token should own; normalize off-scale one-offs.
+4. **Verify in a real browser** at ≥1 breakpoint; scroll it; console must be clean.
+5. **Self-critique by measurement** — contrast ratios, value separation, scroll position — and fix root causes, not symptoms.
+6. For greenfield: build 2–3 fully-realized direction mockups, then commit and say why.
 
 ## Design philosophy (the "$10k site" way)
 - **One thesis line carries everything.** Distill the brand to a single short, specific sentence (via ~4 questions: what is it / who for + what feeling / one thing to remember / hero-art source). Test every design decision against it.

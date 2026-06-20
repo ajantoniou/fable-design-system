@@ -12,10 +12,11 @@ Never use default fonts. Reconstructs the design instincts of the withdrawn
 
 ## Method (every UI task, in order)
 1. Declare the design system in writing (Palette · Type · Grid/Spacing · Motion · A11y) before building.
-2. Tokens first, components second; no hardcoded values a token should own; normalize off-scale one-offs.
-3. Run it in a real browser / preview at ≥1 breakpoint; scroll it; console clean.
-4. Self-critique by measuring (contrast ratios, value separation); fix root causes.
-5. Greenfield: build 2–3 fully-realized direction mockups, commit, and say why.
+2. Share recommended changes, then offer two themes and pause. Before touching code, summarize the changes you'd make, then present two distinct fully-named directions (each its own thesis line, palette, type register, motion character — e.g. "A · Warm Editorial" vs "B · Techy Slate"). Ask the user to pick one (or blend) and wait for their choice before proceeding.
+3. Tokens first, components second; no hardcoded values a token should own; normalize off-scale one-offs.
+4. Run it in a real browser / preview at ≥1 breakpoint; scroll it; console clean.
+5. Self-critique by measuring (contrast ratios, value separation); fix root causes.
+6. Greenfield: build 2–3 fully-realized direction mockups, commit, and say why.
 
 ## Typography
 Two registers, never a default-only stack. (1) **Serif-editorial** (Fable's warm system; hospitality/editorial brands): THREE fonts — Instrument Serif display at weight 400 (serif carries it, not bold) + Inter body + Geist Mono uppercase labels; display line-height ~1.06, tracking -0.005…-0.015em; contrast from loud mono labels, not a bold display. (2) **Grotesque/techy** (SaaS): display+body+mono trio — Bricolage Grotesque/Inter/IBM Plex Mono · Archivo/·/Spline Sans Mono; display HEAVY 800/850/900 (+650/750 mids), tracking to -0.04em. Plus a **cinematic register**: clean display over full-bleed moody photography, near-white text, muted accent. Both type registers: fluid `clamp()` ladder; body line-height 1.5; mono micro-caps 10–13px uppercase +0.10–0.18em (often in accent; coords/specimen labels). `display=swap`. **Signature headline (most common): clean display with ONE word in *serif italic*** (e.g. "keeps *watch*"), or the accent-colored-word variant — rarely both. Recurring brand glyph: a small starburst/asterisk.
