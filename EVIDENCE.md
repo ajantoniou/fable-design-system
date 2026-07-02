@@ -64,6 +64,23 @@ locally-observable evidence**, then cross-checked against each other:
   plus a cohesive lighting/atmosphere/wind/water stack. This fed §8b. Honest gaps:
   game UI/HUD is lightly documented; game **juice/feel** is thin and is Fable's
   weaker, least-autonomous axis. Source: github.com/Braffolk/fable5-world-demo.
+- **Stream E — the demonstration artifacts in this repo.** The persona's
+  §2b (copy voice), §4b (surface details: hairlines, film grain, glow
+  discipline), and §5b (component anatomy: nav, section skeleton, status chips,
+  proof cards, stat rows) were extracted by re-reading the shipped Fable-style
+  pages in [`assets/`](./assets) (`*-after.html` — the sources of the
+  before/after comparisons) at the CSS level. Every value in those sections —
+  the 26×1px eyebrow dash, `feTurbulence` grain at opacity `.05`, hairline
+  tokens (`rgba(245,240,230,.14)`), the `0 30px 60px -30px` on-dark card
+  shadow + 1px accent ring at 5%, the display-numeral-over-mono-label stat
+  pattern, the slash-separated specimen meta row, the glowing 6–7px status
+  dot — is copied from that markup, not invented. The copy-voice rules
+  (sentence case, stacked imperatives, one emotional beat aligned with the
+  styled word, proof-over-hype eyebrows, verb CTAs) describe the writing
+  visible in the same artifacts and across the Stream B sites. Caveat: these
+  artifacts were produced *for this repo* in Fable's style, so they are one
+  step removed from Stream A's direct model output — patterns were kept only
+  where they also matched Stream A/B observations.
 - **No new web *token* specifics found.** A dedicated search for Fable-attributable
   web tokens (exact fonts/hex/easings/radii beyond what's already here) turned up
   **nothing** — reviews discuss *outcomes*, not values. The persona was *not*

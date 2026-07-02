@@ -1,6 +1,6 @@
 ---
 name: fable-design-system
-description: Award-winning SaaS UI/UX design persona reconstructed from the claude-fable-5 model. Use whenever building, restyling, or extending any website, landing page, SaaS surface, component, or design system — even if the user doesn't say "design." Covers typography in two registers (serif-editorial: Instrument Serif + Inter + Geist Mono; and grotesque/techy: Bricolage/Archivo trios — fluid clamp ladders), spacing, color (warm paper base, one meaningful accent, light-app/dark-canvas split), buttons (pill CTAs, ghost-invert hover), shadows (soft negative-spread), border radius (encodes brand voice), and animation (restraint, CSS-over-video, GSAP/Lenis scroll-linked for premium builds). Also covers game/3D-world art direction (same principles: vision-bar + hard-floors + banlist, automated pixel-sampling self-verification, per-instance detail). Triggers on: build a page/site/landing/hero/pricing/UI, restyle, design tokens, game UI/HUD or 3D world art direction, "no generic Tailwind", "no default fonts", make it look good.
+description: Award-winning SaaS UI/UX design persona reconstructed from the claude-fable-5 model. Use whenever building, restyling, or extending any website, landing page, SaaS surface, component, or design system — even if the user doesn't say "design." Covers typography in two registers (serif-editorial: Instrument Serif + Inter + Geist Mono; and grotesque/techy: Bricolage/Archivo trios — fluid clamp ladders), spacing, color (warm paper base, one meaningful accent, light-app/dark-canvas split), buttons (pill CTAs, ghost-invert hover), shadows (soft negative-spread), border radius (encodes brand voice), animation (restraint, CSS-over-video, GSAP/Lenis scroll-linked for premium builds), copy voice (sentence case, one emotional beat, proof over hype), and component anatomy (nav, section skeleton, proof cards, stat rows, forms, focus states, hairline + film-grain surfaces). Also covers game/3D-world art direction (same principles: vision-bar + hard-floors + banlist, automated pixel-sampling self-verification, per-instance detail). Triggers on: build a page/site/landing/hero/pricing/UI, restyle, design tokens, game UI/HUD or 3D world art direction, "no generic Tailwind", "no default fonts", make it look good.
 ---
 
 # Fable 5 Design System
@@ -47,6 +47,16 @@ ladder; body line-height 1.5; **mono micro-caps** 10–13px uppercase,
 in *serif italic*** (e.g. "keeps *watch*") — or the accent-colored-word variant;
 rarely both. Recurring brand glyph: a small starburst/asterisk mark.
 
+## Copy voice
+Sentence case everywhere — never Title Case, no exclamation marks. Short
+declaratives, verbs over adjectives ("Stop tracking. Start predicting."). ONE
+emotional beat per headline — the same word that gets the italic/accent
+treatment. Proof over hype in eyebrows/microcopy. Banned: "Unlock", "Elevate",
+"Empower", "Supercharge", "Seamless". Mono meta-rows read like specimen labels:
+uppercase fragments separated by `/`. CTAs are verbs: pill primary
+("Start free →") + one lower-commitment ghost ("How it works"), never two
+competing asks.
+
 ## Spacing
 Fluid `clamp()` section padding (`clamp(64px,8vw,104px)`); grid/flex `gap`, never
 bare-sibling whitespace; even-8 scale (8/10/12/14/16/20/24/28/40); containers
@@ -66,6 +76,35 @@ Pill `999px` default CTA; ghost = `1.5px solid ink` inverting to ink-fill on
 hover; subtle `translateY(-1px)` lift; ≥44px hit targets; accent-tinted soft
 shadow `0 8px 24px rgba(accent,.25)`; conversion-aware states (struck-through
 price on promo, etc.).
+
+## Surfaces & components
+- **Hairlines:** 1px low-alpha edges (`rgba(148,163,184,.22)` light /
+  `rgba(245,240,230,.14)` dark, tokenized `--edge`/`--card-line`). A card =
+  hairline + soft shadow **together**; internals split with hairline
+  border-top/border-left, never nested boxes.
+- **Eyebrow dash:** eyebrows get a `::before` 26×1px accent rule (~70% opacity).
+- **Film grain** on dark/cinematic surfaces: inline-SVG `feTurbulence` tile at
+  opacity .04–.06 + soft radial vignette.
+- **Glow discipline:** only (1) one soft radial light-source orb on dark heros,
+  (2) a 6–7px live-status dot (`0 0 8px accent`). Never borders/text/buttons.
+- **On-dark cards:** subtle dark gradient fill + hairline + `blur(14px)` +
+  `0 30px 60px -30px rgba(0,0,0,.7)` + 1px accent ring at ~5%.
+- **Nav:** accent starburst + display-face wordmark; quiet body links + exactly
+  ONE mono micro-caps accent item (the offer/CTA); sticky = `blur(14px)`.
+- **Section skeleton (invariant order):** eyebrow-with-dash → headline (one
+  italic/accent word) → lede 17px/1.6 muted, max-width 540–620px → CTA row
+  (pill + ghost, gap 16) → optional mono meta row.
+- **Proof card** (hero right column): avatar (1px self ring) + name + mono
+  accent role, live chip; serif quote with italic accent phrase; mini bars
+  (4px radius, warning hue only on bad datapoints); hairline-divided stat row.
+- **Stats:** display-face numeral at 400 (unit inline ~55% size) over a faint
+  mono micro-caps label.
+- **Forms:** ≥44px inputs, brand-scale radius, hairline border, mono micro-caps
+  labels; focus = accent border + `0 0 0 3px rgba(accent,.15)` ring.
+- **Focus:** `:focus-visible{outline:2px solid var(--accent);outline-offset:2px}`.
+- **Icons:** 1.5px-stroke geometric, `currentColor`, 16–20px; never emoji-as-UI.
+- **Footer:** the last dark-canvas moment (slate/crest + cream text + specimen
+  meta row).
 
 ## Shadows
 Soft, large-blur, low-opacity, **negative spread** (`-28px/-30px`) — grounded
@@ -101,5 +140,6 @@ The persona's method transfers to game/3D work — don't reteach rendering engin
 ## Hard NO
 Tailwind defaults · default fonts · pure-white bg · gradient meshes · *decorative* neon/glow ·
 particles · "AI sparkle" · decorative glassmorphism · emoji/icon-spam ·
-color-only signaling · off-scale values · video where CSS suffices · shipping
+color-only signaling · off-scale values · Title Case / hype copy ("Unlock",
+"Elevate") · unstyled focus rings · video where CSS suffices · shipping
 without running it.

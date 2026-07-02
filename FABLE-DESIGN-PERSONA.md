@@ -170,6 +170,33 @@ ink). A clean geometric "spark," never a clip-art icon.
 
 ---
 
+## 2b. Copy voice — the words are half the typography
+
+Fable writes the copy with the same restraint it designs with. The type system
+only lands if the words inside it behave:
+
+- **Sentence case everywhere.** Headlines, buttons, labels — never Title Case,
+  never ALL-CAPS display (uppercase is reserved for the mono micro-caps layer).
+- **Short declaratives; verbs over adjectives.** The observed hero pattern is
+  stacked imperative fragments: *"Stop tracking. Start predicting. Brew more
+  green days."* No filler clause survives.
+- **One emotional beat per headline** — and it's the same word that gets the
+  serif-italic or accent treatment. The styling and the meaning point at the
+  same word.
+- **Proof over hype.** Eyebrows and microcopy carry concrete evidence
+  ("Built by a physician. No ring, no labs, no wearables."), not superlatives.
+- **Banned vocabulary:** "Unlock", "Elevate", "Empower", "Supercharge",
+  "Seamless", "Revolutionize" — and exclamation marks. If a sentence works in a
+  brochure for anything, cut it.
+- **Mono meta-rows read like specimen labels:** short uppercase fragments
+  separated by `/` slashes — `LIFESTYLE MEDICINE / DAILY REFLECTION / FIRST 10
+  DAYS FREE` — one fragment may take the accent. Used as footer meta, hero
+  kickers, card headers.
+- **CTAs are verbs with a destination:** "Start free →", "How it works" — a
+  primary action plus a lower-commitment learn path, never two competing asks.
+
+---
+
 ## 3. Spacing scale — fluid, gap-based, generous
 
 - **Sections breathe via `clamp()` padding**, not fixed px:
@@ -272,6 +299,40 @@ single neon-accent register in §4), animated particles, glassmorphism-as-decora
 
 ---
 
+## 4b. Surface details — hairlines, grain, and light
+
+The layer between "palette" and "components": how Fable makes surfaces feel
+*material* instead of flat.
+
+- **Hairline edges everywhere.** 1px borders in low-alpha ink — light surfaces
+  `rgba(148,163,184,.22)` / dark surfaces `rgba(245,240,230,.14)` — tokenized
+  (`--edge`, `--card-line`). A card is **hairline + soft shadow together**;
+  the hairline defines the edge, the shadow grounds it. Neither alone.
+- **Hairline dividers structure card internals.** Stat rows split with
+  `border-top: 1px solid var(--card-line)` and `border-left` between siblings —
+  never boxes-within-boxes.
+- **The eyebrow dash:** eyebrows carry a `::before` rule — a `26px × 1px` line
+  in the accent at ~70% opacity, `gap: 11px` before the text. A tiny signature
+  that instantly reads "designed."
+- **Film grain on cinematic/dark surfaces.** An inline-SVG `feTurbulence`
+  data-URI tile (`baseFrequency: .9`, 2 octaves) at **opacity .04–.06**,
+  plus a soft radial **vignette** (`transparent 52% → rgba(0,0,0,.46) 100%`).
+  Kills the "flat gradient" look; invisible until you remove it.
+- **Glow discipline.** Glow is allowed exactly twice: (1) as a **light
+  source** — one large soft radial orb (`blur(8px)`, accent at ~20% fading to
+  transparent) anchoring a corner of a dark hero; (2) on a **live-status dot**
+  (`box-shadow: 0 0 8px accent`). Never on borders, text, or buttons — that's
+  the banned "AI sparkle."
+- **On-dark cards:** subtle dark **gradient fill** (`linear-gradient(165deg,
+  …)` a few % apart in value — lit, not flat), 1px hairline,
+  `backdrop-filter: blur(14px)`, deep negative-spread shadow
+  (`0 30px 60px -30px rgba(0,0,0,.7)`) **plus a 1px accent ring at ~5%
+  opacity** (`0 0 0 1px rgba(accent,.05)`).
+- **Avatars/marks on dark** get a 1px self-colored ring
+  (`0 0 0 1px rgba(accent,.3)`) instead of a drop shadow.
+
+---
+
 ## 5. Button styles
 
 - **Pill (`border-radius: 999px`) is the default marketing CTA.** Square +
@@ -300,6 +361,61 @@ single neon-accent register in §4), animated particles, glassmorphism-as-decora
 - **≥44px hit targets** (especially mobile; grow hamburgers/icon buttons to 44px).
 - **Conversion-aware button states:** bake the value into the state — e.g. CTA
   turns sage with a struck-through old price when a promo code applies, *before* the click.
+
+---
+
+## 5b. Component anatomy — how the pieces assemble
+
+The recurring component grammar across Fable pages. Same parts, every register.
+
+**Nav / header:** brand = small **starburst mark in the accent** + wordmark in
+the display face (~23px, serif at 400 in the editorial register). Right side:
+2–3 quiet body-font links, then **exactly one mono micro-caps item in the
+accent** carrying the offer ("FIRST 10 DAYS FREE") or the CTA. Sticky headers
+get `backdrop-filter: blur(14px)` over a translucent surface.
+
+**Section skeleton (the invariant order):**
+1. **Eyebrow** — mono micro-caps + the accent dash rule (§4b);
+2. **Headline** — display face with the one italic/accent word;
+3. **Lede** — 17px, line-height ~1.6, muted ink, `max-width` 540–620px
+   (never full container width); one phrase may step up to full ink +
+   weight 500 for emphasis;
+4. **CTA row** — pill primary + ghost secondary, `gap: 16px`;
+5. optional **mono meta row** (§2b specimen labels).
+
+**Status chip:** pill, translucent dark bg (~78% opacity) + hairline +
+`blur(10px)`, mono 11px/600/+.08em, with a 6–7px **glowing live dot** —
+the one sanctioned glow (§4b).
+
+**Floating proof card** (the hero's right column — testimonial and product
+moment at once): header row = avatar (radial-gradient fill, 1px self ring) +
+name in body-font 600 + **role in mono micro-caps accent**, opposite a live
+chip; then a **serif quote** (~18px, one italic accent phrase); then a strip of
+**mini data-viz** (bars at 4px radius, height-encoded, gradient fills — the
+warning hue appears only on genuinely bad datapoints); then a hairline-divided
+**stat row**.
+
+**Stats:** big numeral in the **display face at weight 400** (~28px card /
+larger in sections), unit inline at ~55% size, **mono micro-caps label
+underneath** in the faint ink. The numeral may take the accent; the label never
+does both.
+
+**Forms & inputs:** ≥44px tall; radius from the brand scale (10–12px techy,
+14–16px friendly); 1px hairline border on the paper/card surface; labels as
+mono micro-caps; focus = accent border + soft accent ring
+(`0 0 0 3px rgba(accent,.15)`), never the browser default blue.
+
+**Focus visibility (all interactive elements):**
+`:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }` —
+keyboard users get the same designed attention as hover users.
+
+**Icons:** thin geometric stroke icons (1.5px, `currentColor`, 16–20px,
+Lucide-style). Never emoji as UI, never filled clip-art, never a
+three-column-circle-icon features grid.
+
+**Footer:** the page's last dark-canvas moment — slate/crest panel (§4) with
+cream/near-white text, mono micro-caps link headers, and the specimen-label
+meta row. On cinematic pages the footer meta may sit directly on the imagery.
 
 ---
 
@@ -462,6 +578,8 @@ invent juice specifics; treat feel as a human-in-the-loop pass.
 - Color as the *only* signal channel.
 - Off-scale one-off radii / spacing values.
 - Motion that doesn't serve comprehension; video where ~3KB of CSS would do.
+- Title Case headlines; hype vocabulary ("Unlock", "Elevate", "Empower", "Seamless"); exclamation marks.
+- Default browser focus rings left unstyled (or worse, removed with nothing in their place).
 - Shipping without running it in a real browser at a real breakpoint.
 
 ---
@@ -475,7 +593,10 @@ invent juice specifics; treat feel as a human-in-the-loop pass.
 - [ ] Warm paper base; one action accent; warning hue reserved.
 - [ ] WCAG AA contrast verified numerically; color not the only channel; ≥44px targets.
 - [ ] Pill CTAs, ghost-invert hover, subtle lift.
-- [ ] Soft grounded shadows (negative spread / paper two-layer).
+- [ ] Soft grounded shadows (negative spread / paper two-layer); cards = hairline + shadow together.
+- [ ] Copy in sentence case; one emotional beat per headline; no hype vocabulary; CTAs are verbs.
+- [ ] Section skeleton in order (eyebrow-with-dash → headline → bounded lede → CTA row → meta).
+- [ ] `:focus-visible` styled with the accent; thin-stroke icons, no emoji-as-UI.
 - [ ] Radius matches brand voice; scale consistent.
 - [ ] Motion functional, CSS-first, `prefers-reduced-motion` wrapped.
 - [ ] Ran it locally, scrolled it, console clean, checked ≥1 breakpoint.
